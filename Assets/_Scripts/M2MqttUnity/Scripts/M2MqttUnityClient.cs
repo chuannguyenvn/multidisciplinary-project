@@ -187,7 +187,7 @@ namespace M2MqttUnity
         /// </summary>
         protected virtual void DecodeMessage(string topic, byte[] message)
         {
-            Debug.LogFormat("Message received on topic: {0}", topic);
+            Debug.Log("Message received on topic: " + topic);
         }
 
         /// <summary>

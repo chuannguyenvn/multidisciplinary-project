@@ -55,12 +55,17 @@ namespace M2MqttUnity.Examples
 
         private List<string> eventMessages = new List<string>();
         private bool updateUI = false;
+        private string defaultTopic = "QuangBao/feeds/test1";
 
         [SerializeField] private string topic;
+        [SerializeField]
+        private MqttReceiver _receiver = null;
+        [SerializeField]
+        private InputField _data = null;
         
         public void TestPublish()
         {
-            client.Publish(topic, System.Text.Encoding.UTF8.GetBytes("Test message"), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
+            client.Publish(topic, System.Text.Encoding.UTF8.GetBytes(_data.text), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
             Debug.Log("Test message published");
             AddUiMessage("Test message published.");
         }
@@ -204,10 +209,12 @@ namespace M2MqttUnity.Examples
 
         protected override void DecodeMessage(string topic, byte[] message)
         {
+            //base.DecodeMessage(topic, message);
+            _receiver.CallDecode(topic, message);
             string msg = System.Text.Encoding.UTF8.GetString(message);
-            Debug.Log("Received: " + msg);
+            //Debug.Log("Received: " + msg);
             StoreMessage(msg);
-            if (topic == "M2MQTT_Unity/test")
+            if (topic == defaultTopic)
             {
                 if (autoTest)
                 {
