@@ -11,6 +11,10 @@ public class PlantInformationStamp : MonoBehaviour
     [SerializeField] private Image _background;
     [SerializeField] private TMP_Text _informationText;
 
+    public void OnSetData(string data)
+    {
+        _informationText.text = data;
+    }
     public void OnClickSpawnInfoPanel()
     {
 

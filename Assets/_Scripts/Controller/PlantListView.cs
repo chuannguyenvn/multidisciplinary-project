@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlantListview : MonoBehaviour
+public class PlantListView : MonoBehaviour
 {
     [SerializeField]
     private PlantListItemView _prefabPlantItem = null;

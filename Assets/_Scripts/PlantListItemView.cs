@@ -11,7 +11,6 @@ public class PlantListItemView : MonoBehaviour
     [SerializeField]
     private Image _img = null;
     [Space]
-    //public List<GameObject> LstStampInfo = new List<GameObject>();
     public PlantInformationStamp LightStamp = null;
     public PlantInformationStamp TempStamp = null;
     public PlantInformationStamp HumidStamp = null;
