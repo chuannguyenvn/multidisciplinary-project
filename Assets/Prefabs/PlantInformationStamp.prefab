@@ -250,7 +250,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2511200256006684197}
   - component: {fileID: 2511200256006684199}
-  - component: {fileID: 3931384933952332891}
+  - component: {fileID: 8166216108765191610}
   m_Layer: 5
   m_Name: PlantInformationStamp
   m_TagString: Untagged
@@ -289,7 +289,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2511200256006684194}
   m_CullTransparentMesh: 1
---- !u!114 &3931384933952332891
+--- !u!114 &8166216108765191610
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -303,7 +303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 1815277543938023606}
   background: {fileID: 8314750363714799908}
-  informationText: {fileID: 0}
+  informationText: {fileID: 7181813972476205323}
 --- !u!1 &9132664548009830185
 GameObject:
   m_ObjectHideFlags: 0

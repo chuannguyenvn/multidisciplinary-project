@@ -1,11 +1,11 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlantController : MonoBehaviour
+public class PlantListview : MonoBehaviour
 {
     [SerializeField]
-    private PlantItem _prefabPlantItem = null;
+    private PlantListItemView _prefabPlantItem = null;
     [SerializeField]
     private GameObject _content = null;
 
@@ -16,6 +16,6 @@ public class PlantController : MonoBehaviour
     }
     public void SpawnPlantItems()
     {
-        Utility.InstantiateObject<PlantItem>(_prefabPlantItem, _content.transform);
+        Utility.InstantiateObject<PlantListItemView>(_prefabPlantItem, _content.transform);
     }
 }

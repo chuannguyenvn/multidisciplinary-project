@@ -7,6 +7,6 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
     // @formatter:off
     
     [Header("Plant List")] 
-    public PlantListView PlantListView;
+    public PlantListview PlantListView;
     public PlantListItemView PlantListItemView;
 }

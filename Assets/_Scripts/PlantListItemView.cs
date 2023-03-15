@@ -1,16 +1,31 @@
-﻿using System;
-using TMPro;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 
 public class PlantListItemView : MonoBehaviour
 {
-    [SerializeField] private TMP_Text nameText;
-    [SerializeField] private Button button;
-    [SerializeField] private Image image;
+    [SerializeField]
+    private TextMeshProUGUI _name = null;
+    [SerializeField]
+    private Image _img = null;
+    [Space]
+    [SerializeField]
+    private GameObject _prefafStamp = null;
+    [SerializeField]
+    private GameObject _content = null;
 
-    private void Start()
+    private List<GameObject> _lstStampInfo = new List<GameObject>();
+    public void SpawnStampInfo()
     {
-        
+        if (_lstStampInfo.Count <= 1)
+        {
+            //Utility.InstantiateObject<>
+        }
+    }
+    public void OnClickSpawnInfoPanel()
+    {
+
     }
 }

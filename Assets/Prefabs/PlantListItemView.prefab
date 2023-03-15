@@ -243,6 +243,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7813878198511020377}
   - component: {fileID: 7813878198511020379}
+  - component: {fileID: 6343141370663962035}
   m_Layer: 5
   m_Name: PlantListItemView
   m_TagString: Untagged
@@ -282,6 +283,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7813878198511020376}
   m_CullTransparentMesh: 1
+--- !u!114 &6343141370663962035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7813878198511020376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0c9b880f45e428991613a5c14befd95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: {fileID: 7813878198816700656}
+  _img: {fileID: 3437539842710057104}
+  _prefafStamp: {fileID: 0}
+  _content: {fileID: 0}
 --- !u!1 &7813878198539020416
 GameObject:
   m_ObjectHideFlags: 0
