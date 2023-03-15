@@ -7,12 +7,12 @@ using UnityEngine.UI;
 
 public class PlantInformationStamp : MonoBehaviour
 {
-    [SerializeField] private Image icon;
-    [SerializeField] private Image background;
-    [SerializeField] private TMP_Text informationText;
+    [SerializeField] private Image _icon;
+    [SerializeField] private Image _background;
+    [SerializeField] private TMP_Text _informationText;
 
-    private void Start()
+    public void OnClickSpawnInfoPanel()
     {
-        
+
     }
 }

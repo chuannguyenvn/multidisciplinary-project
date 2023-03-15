@@ -11,21 +11,9 @@ public class PlantListItemView : MonoBehaviour
     [SerializeField]
     private Image _img = null;
     [Space]
-    [SerializeField]
-    private GameObject _prefafStamp = null;
-    [SerializeField]
-    private GameObject _content = null;
+    //public List<GameObject> LstStampInfo = new List<GameObject>();
+    public PlantInformationStamp LightStamp = null;
+    public PlantInformationStamp TempStamp = null;
+    public PlantInformationStamp HumidStamp = null;
 
-    private List<GameObject> _lstStampInfo = new List<GameObject>();
-    public void SpawnStampInfo()
-    {
-        if (_lstStampInfo.Count <= 1)
-        {
-            //Utility.InstantiateObject<>
-        }
-    }
-    public void OnClickSpawnInfoPanel()
-    {
-
-    }
 }
