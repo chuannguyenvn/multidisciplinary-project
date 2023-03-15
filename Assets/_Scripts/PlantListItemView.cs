@@ -15,4 +15,13 @@ public class PlantListItemView : MonoBehaviour
     public PlantInformationStamp TempStamp = null;
     public PlantInformationStamp HumidStamp = null;
 
+    public void SetPlantItem(string name, string id)
+    {
+        _name.text = name;
+        _img.sprite = ResourceManager.Instance.GetImportImage(id);
+    }
+    public void OnClickShowPlantInfo()
+    {
+
+    }
 }

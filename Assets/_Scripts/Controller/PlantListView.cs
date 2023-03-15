@@ -9,13 +9,15 @@ public class PlantListView : MonoBehaviour
     [SerializeField]
     private GameObject _content = null;
 
+    public string name = "";
+    public string id = "";
     private void Start()
     {
-        SpawnPlantItems();
-        SpawnPlantItems();
+
     }
-    public void SpawnPlantItems()
+    public void OnClickSpawnPlantItems()
     {
-        Utility.InstantiateObject<PlantListItemView>(_prefabPlantItem, _content.transform);
+        var item = Utility.InstantiateObject<PlantListItemView>(_prefabPlantItem, _content.transform);
+        item.SetPlantItem(name, id);
     }
 }

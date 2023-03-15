@@ -15,7 +15,7 @@ public class PlantInformationStamp : MonoBehaviour
     {
         _informationText.text = data;
     }
-    public void OnClickSpawnInfoPanel()
+    public void OnClickShowInfoPanel()
     {
 
     }
