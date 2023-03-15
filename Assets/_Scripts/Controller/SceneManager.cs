@@ -14,6 +14,6 @@ public class SceneManager : Singleton<SceneManager>
     public void ChangeScene(string scene)
     {
         _currentScene = scene;
-        UnityEngine.SceneManagement.SceneManager.LoadScene("");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(scene);
     }
 }

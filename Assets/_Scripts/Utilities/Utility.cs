@@ -18,6 +18,20 @@ public static class Utility
         return true;
     }
 
+    public static T InstantiateObject<T>(T prefab, Transform parent) where T : Component
+    {
+        if (prefab != null)
+        {
+            T go = GameObject.Instantiate<T>(prefab) as T;
+            go.transform.SetParent(parent);
+            go.transform.localScale = Vector3.one;
+            go.transform.localRotation = Quaternion.identity;
+            go.transform.localPosition = Vector3.zero;
+            return go;
+        }
+        return null;
+    }
+
     public static Vector2Int ToVector2Int(this Vector2 v)
     {
         return new Vector2Int(Mathf.RoundToInt(v.x), Mathf.RoundToInt(v.y));
