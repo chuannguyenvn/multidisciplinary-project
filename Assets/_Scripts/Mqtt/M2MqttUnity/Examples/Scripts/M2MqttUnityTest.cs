@@ -57,7 +57,17 @@ namespace M2MqttUnity.Examples
         private List<string> eventMessages = new List<string>();
         private bool updateUI = false;
         public string defaultTopic = "QuangBao/feeds/test1";
+        
+        public Action<string, string> OnMessageReceived;
+        public Action OnReady;
+        public bool IsReady = false;
 
+        public void ExecuteAction(Action action)
+        {
+            if (IsReady) action.Invoke();
+            else OnReady += action;
+        }
+        
         [SerializeField] private string topic;
         [SerializeField]
         private MqttReceiver _receiver = null;
@@ -69,6 +79,12 @@ namespace M2MqttUnity.Examples
             client.Publish(topic, System.Text.Encoding.UTF8.GetBytes(_data.text), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
             Debug.Log("Test message published");
             AddUiMessage("Test message published.");
+        }
+
+        public void Publish(string topic, string content)
+        {
+            client.Publish(topic, System.Text.Encoding.UTF8.GetBytes(content), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
+            Debug.Log("Test message published");
         }
 
         public void SetBrokerAddress(string brokerAddress)
@@ -121,7 +137,9 @@ namespace M2MqttUnity.Examples
         {
             base.OnConnected();
             SetUiMessage("Connected to broker on " + brokerAddress + "\n");
-
+            OnReady?.Invoke();
+            IsReady = true;
+            
             if (autoTest)
             {
                 TestPublish();
@@ -134,6 +152,16 @@ namespace M2MqttUnity.Examples
         }
 
         protected override void UnsubscribeTopics()
+        {
+            client.Unsubscribe(new string[] { topic });
+        }
+        
+        public void SubscribeTopic(string topic)
+        {
+            client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+        }
+
+        public void UnsubscribeTopic(string topic)
         {
             client.Unsubscribe(new string[] { topic });
         }
@@ -212,6 +240,9 @@ namespace M2MqttUnity.Examples
         {
             _receiver.CallDecode(topic, message);
             string msg = System.Text.Encoding.UTF8.GetString(message);
+            
+            OnMessageReceived?.Invoke(topic, msg);
+            
             //Debug.Log("Received: " + msg);
             StoreMessage(msg);
             if (topic == defaultTopic)
