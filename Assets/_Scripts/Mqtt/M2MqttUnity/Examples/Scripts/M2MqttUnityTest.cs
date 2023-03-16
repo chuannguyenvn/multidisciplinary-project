@@ -57,7 +57,16 @@ namespace M2MqttUnity.Examples
         private List<string> eventMessages = new List<string>();
         private bool updateUI = false;
         public string defaultTopic = "QuangBao/feeds/test1";
+        
         public Action<string, string> OnMessageReceived;
+        public Action OnReady;
+        public bool IsReady = false;
+
+        public void ExecuteAction(Action action)
+        {
+            if (IsReady) action.Invoke();
+            else OnReady += action;
+        }
         
         [SerializeField] private string topic;
         [SerializeField]
@@ -128,7 +137,9 @@ namespace M2MqttUnity.Examples
         {
             base.OnConnected();
             SetUiMessage("Connected to broker on " + brokerAddress + "\n");
-
+            OnReady?.Invoke();
+            IsReady = true;
+            
             if (autoTest)
             {
                 TestPublish();

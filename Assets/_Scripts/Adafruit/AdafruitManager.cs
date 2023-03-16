@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class AdafruitManager : PersistentSingleton<AdafruitManager>
 {
+    public string Username;
+
     [SerializeField] private M2MqttUnityTest mqttUnityClient;
     [SerializeField] private MqttReceiver mqttReceiver;
     [SerializeField] private MqttController mqttController;
@@ -18,16 +20,21 @@ public class AdafruitManager : PersistentSingleton<AdafruitManager>
 
     public void SendMessage(string topic, string content)
     {
-        mqttUnityClient.Publish(topic, content);
+        mqttUnityClient.ExecuteAction(() => mqttUnityClient.Publish(topic, content));
     }
 
     public void SubscribeTopic(string topic)
     {
-        mqttUnityClient.SubscribeTopic(topic);
+        mqttUnityClient.ExecuteAction(() => mqttUnityClient.SubscribeTopic(topic));
     }
 
     public void UnsubscribeTopic(string topic)
     {
-        mqttUnityClient.UnsubscribeTopic(topic);
+        mqttUnityClient.ExecuteAction(() => mqttUnityClient.UnsubscribeTopic(topic));
+    }
+
+    public string ConstructTopicPathString(string topic)
+    {
+        return Username + "/feeds/" + topic;
     }
 }
