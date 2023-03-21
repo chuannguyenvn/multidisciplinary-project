@@ -7,7 +7,7 @@ namespace Adafruit
     {
         public Action<string> OnMessageReceived;
         protected string LastReceivedMessage;
-        protected bool AutoInvoke = true;
+        protected bool AutoLog = true;
 
         protected virtual void Start()
         {
@@ -25,8 +25,9 @@ namespace Adafruit
         {
             if (topic.Contains(TopicPath))
             {
-                if (AutoInvoke) OnMessageReceived?.Invoke(message);
+                OnMessageReceived?.Invoke(message);
                 LastReceivedMessage = message;
+                if (AutoLog) LogMessage(message);
             }
         }
 

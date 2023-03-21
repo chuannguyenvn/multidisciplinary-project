@@ -2114,8 +2114,8 @@ MonoBehaviour:
   connectionDelay: 500
   timeoutOnConnection: 30000
   autoConnect: 1
-  mqttUserName: TrungNhat
-  mqttPassword: 
+  mqttUserName: chuanpro030
+  mqttPassword: aio_MHCu60mRE7tQdzU4U9VLI3WAFiMc
   autoTest: 0
   consoleInputField: {fileID: 0}
   encryptedToggle: {fileID: 0}
@@ -4457,7 +4457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce763feeb632485d958f2c0bcc7c9fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Username: TrungNhat
+  Username: chuanpro030
   mqttUnityClient: {fileID: 918710231}
   mqttReceiver: {fileID: 116183451}
   mqttController: {fileID: 993272566}
@@ -4896,7 +4896,7 @@ PrefabInstance:
     - target: {fileID: 2066162031961168245, guid: 487e030c103a3874e9dc945e3789300d,
         type: 3}
       propertyPath: Topic
-      value: humidity
+      value: moisture
       objectReference: {fileID: 0}
     - target: {fileID: 2066162031961168245, guid: 487e030c103a3874e9dc945e3789300d,
         type: 3}

@@ -8,6 +8,7 @@ namespace Adafruit
         public void SendMessage(string content)
         {
             AdafruitManager.Instance.SendMessage(TopicPath, content);
+            LogMessage(content);
         }
     }
 }
