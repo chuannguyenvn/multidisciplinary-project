@@ -1,6 +1,13 @@
 ﻿public enum ApplicationState
 {
     Login,
-    ConnectingToAdafruit,
     Main,
+}
+
+public enum LoginState
+{
+    Waiting,
+    Proceeding,
+    Failed,
+    Success,
 }

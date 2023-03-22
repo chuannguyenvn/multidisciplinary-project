@@ -15,8 +15,8 @@ public class SceneManager : PersistentSingleton<SceneManager>, IMachineUser
 
     public void QueueWork()
     {
-        ApplicationManager.Instance.StateMachine.Configure(ApplicationState.ConnectingToAdafruit)
-            .OnExit(() => ChangeScene("Main"));
+        ApplicationManager.Instance.StateMachine.Configure(ApplicationState.Main)
+            .OnEntry(() => ChangeScene("Main"));
     }
 
     public string GetCurrentScene()
@@ -26,6 +26,7 @@ public class SceneManager : PersistentSingleton<SceneManager>, IMachineUser
 
     public void ChangeScene(string scene)
     {
+        Debug.Log("aaaaaaaaaaaa");
         _currentScene = scene;
         UnityEngine.SceneManagement.SceneManager.LoadScene(scene);
     }

@@ -44,7 +44,7 @@ public class LoginManager : PersistentSingleton<LoginManager>
         StateMachine.Configure(LoginState.Success).OnEntry(SuccessfulLoginHandler);
         StateMachine.Configure(LoginState.Failed).OnEntry(UnsuccessfulLoginHandler);
 
-        StateMachine.StartMachine();
+        ApplicationManager.Instance.StateMachine.Configure(ApplicationState.Login).OnEntry(StateMachine.StartMachine);
     }
 
     private void ProceedLogin()
@@ -62,22 +62,15 @@ public class LoginManager : PersistentSingleton<LoginManager>
 
     private void SuccessfulLoginHandler()
     {
-        ApplicationManager.Instance.StateMachine.ChangeState(ApplicationState.ConnectingToAdafruit);
         PlayerPrefs.SetString("USERNAME", _accountField.text);
         PlayerPrefs.SetString("PASSWORD", _passwordField.text);
         PlayerPrefs.SetString("KEY", _keyField.text);
+        
+        ApplicationManager.Instance.StateMachine.ChangeState(ApplicationState.Main);
     }
 
     private void UnsuccessfulLoginHandler()
     {
         _accountField.text = "fuck you youre wrong dude";
     }
-}
-
-public enum LoginState
-{
-    Waiting,
-    Proceeding,
-    Failed,
-    Success,
 }

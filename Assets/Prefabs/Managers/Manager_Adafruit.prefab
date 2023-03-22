@@ -148,7 +148,7 @@ MonoBehaviour:
   certificateName: 
   connectionDelay: 500
   timeoutOnConnection: 30000
-  autoConnect: 1
+  autoConnect: 0
   mqttUserName: chuanpro030
   mqttPassword: aio_MHCu60mRE7tQdzU4U9VLI3WAFiMc
   autoTest: 0
