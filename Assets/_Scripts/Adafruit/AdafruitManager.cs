@@ -9,7 +9,7 @@ public class AdafruitManager : PersistentSingleton<AdafruitManager>
 {
     public event Action<bool> LoginStatusReceived;
 
-    public string Username;
+    [HideInInspector] public string Username;
 
     [SerializeField] private M2MqttUnityTest mqttUnityClient;
     [SerializeField] private MqttReceiver mqttReceiver;

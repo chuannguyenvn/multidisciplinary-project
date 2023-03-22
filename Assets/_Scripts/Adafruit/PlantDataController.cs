@@ -21,7 +21,7 @@ namespace Adafruit
         {
             _lightDataSender.PlantName = _lightDataReceiver.PlantName = plantName;
             _lightDataSender.Topic = _lightDataReceiver.Topic = Constants.TOPIC_LIGHT;
-            _lightDataReceiver.OnMessageReceived += LightValueChanged;
+            _lightDataReceiver.OnMessageReceived += value => LightValueChanged?.Invoke(value);
             _lightDataReceiver.gameObject.SetActive(true);
 
             _temperatureDataSender.PlantName = _temperatureDataReceiver.PlantName = plantName;

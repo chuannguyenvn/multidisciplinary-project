@@ -26,7 +26,6 @@ public class SceneManager : PersistentSingleton<SceneManager>, IMachineUser
 
     public void ChangeScene(string scene)
     {
-        Debug.Log("aaaaaaaaaaaa");
         _currentScene = scene;
         UnityEngine.SceneManagement.SceneManager.LoadScene(scene);
     }
