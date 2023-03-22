@@ -516,3 +516,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frontImageRectTransform: {fileID: 953347133228876810}
   backImageRectTransform: {fileID: 953347132923284643}
+  _valueText: {fileID: 953347133297808784}

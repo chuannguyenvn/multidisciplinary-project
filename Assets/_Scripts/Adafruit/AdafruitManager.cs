@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Adafruit;
 using M2MqttUnity;
 using M2MqttUnity.Examples;
 using UnityEngine;
@@ -13,8 +15,26 @@ public class AdafruitManager : PersistentSingleton<AdafruitManager>
 
     public Action<string, string> MessageReceived;
 
+    private List<string> _plantNames = new() {"dadn"};
+
+    public Dictionary<string, PlantDataController> PlantDataControllersByName = new();
+
+
     private void Start()
     {
+        mqttUnityClient.ConnectionSucceeded += Init;
+    }
+
+
+    private void Init()
+    {
+        foreach (var plantName in _plantNames)
+        {
+            var dataController = Instantiate(ResourceManager.Instance.PlantDataController, transform);
+            dataController.Init(plantName);
+            PlantDataControllersByName.Add(plantName, dataController);
+        }
+
         mqttUnityClient.OnMessageReceived += (topic, message) => MessageReceived?.Invoke(topic, message);
     }
 

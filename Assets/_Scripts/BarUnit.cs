@@ -1,4 +1,5 @@
 ﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -11,6 +12,11 @@ public class BarUnit : MonoBehaviour
     private Image frontImage;
     private Image backImage;
 
+    [SerializeField] private TMP_Text _valueText;
+    
+    private float _minData;
+    private float _maxData;
+    
     private void Awake()
     {
         frontImage = frontImageRectTransform.GetComponent<Image>();
@@ -21,6 +27,18 @@ public class BarUnit : MonoBehaviour
     {
         frontImageRectTransform.sizeDelta = new Vector2(frontImageRectTransform.sizeDelta.x,
             backImageRectTransform.rect.height * percentage);
+        _valueText.text = percentage.ToString("F2");
+    }
+
+    public void SetValue(float value)
+    {
+        
+    }
+
+    public void SetNewLimits(float min, float max)
+    {
+        _minData = min;
+        _maxData = max;
     }
 
     public void HistoryChangedHandler(HistoryType historyType)

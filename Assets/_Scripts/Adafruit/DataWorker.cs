@@ -11,21 +11,6 @@ namespace Adafruit
         public string Topic;
         public string TopicPath => AdafruitManager.Instance.ConstructTopicPathString(PlantName + '.' + Topic);
         public List<CommunicationLog> History = new();
-        
-        private IEnumerator Start()
-        {
-            yield return new WaitForSeconds(2f);
-        }
-
-        public virtual void SetTopic(HistoryType historyType)
-        {
-            Topic = historyType switch
-            {
-                HistoryType.Light => "light",
-                HistoryType.Temperature => "temperature",
-                HistoryType.Humidity => "moisture",
-            };
-        }
 
         public void LogMessage(string content)
         {

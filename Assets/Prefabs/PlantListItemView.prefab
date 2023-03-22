@@ -295,11 +295,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0c9b880f45e428991613a5c14befd95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: {fileID: 7813878198816700656}
+  _nameText: {fileID: 7813878198816700656}
   _img: {fileID: 3437539842710057104}
   LightStamp: {fileID: 4611072254981039075}
   TempStamp: {fileID: 2099876559501859644}
-  HumidStamp: {fileID: 2099876559197351399}
+  MoistureStamp: {fileID: 2099876559197351399}
 --- !u!1 &7813878198539020416
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,7 +698,13 @@ PrefabInstance:
       propertyPath: colorType
       value: 7
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8166216108765191610, guid: c6e34660560e231459066f86435d10c2,
+        type: 3}
+      propertyPath: _dataReceiver
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8132379123555559720, guid: c6e34660560e231459066f86435d10c2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c6e34660560e231459066f86435d10c2, type: 3}
 --- !u!114 &4611072254981039075 stripped
 MonoBehaviour:
@@ -734,7 +740,7 @@ PrefabInstance:
     - target: {fileID: 2511200256006684194, guid: c6e34660560e231459066f86435d10c2,
         type: 3}
       propertyPath: m_Name
-      value: Stamp_Humidity
+      value: Stamp_Moisture
       objectReference: {fileID: 0}
     - target: {fileID: 2511200256006684197, guid: c6e34660560e231459066f86435d10c2,
         type: 3}
@@ -846,7 +852,13 @@ PrefabInstance:
       propertyPath: colorType
       value: 9
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8166216108765191610, guid: c6e34660560e231459066f86435d10c2,
+        type: 3}
+      propertyPath: _dataReceiver
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8132379123555559720, guid: c6e34660560e231459066f86435d10c2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c6e34660560e231459066f86435d10c2, type: 3}
 --- !u!114 &2099876559197351399 stripped
 MonoBehaviour:
@@ -994,7 +1006,13 @@ PrefabInstance:
       propertyPath: colorType
       value: 8
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8166216108765191610, guid: c6e34660560e231459066f86435d10c2,
+        type: 3}
+      propertyPath: _dataReceiver
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8132379123555559720, guid: c6e34660560e231459066f86435d10c2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c6e34660560e231459066f86435d10c2, type: 3}
 --- !u!114 &2099876559501859644 stripped
 MonoBehaviour:

@@ -9,13 +9,13 @@ namespace Adafruit
         protected string LastReceivedMessage;
         protected bool AutoLog = true;
 
-        protected virtual void Start()
+        protected virtual void OnEnable()
         {
             AdafruitManager.Instance.SubscribeTopic(TopicPath);
             AdafruitManager.Instance.MessageReceived += MessageReceivedHandler;
         }
 
-        protected virtual void OnDestroy()
+        protected virtual void OnDisable()
         {
             AdafruitManager.Instance.UnsubscribeTopic(TopicPath);
             AdafruitManager.Instance.MessageReceived -= MessageReceivedHandler;
@@ -29,13 +29,6 @@ namespace Adafruit
                 LastReceivedMessage = message;
                 if (AutoLog) LogMessage(message);
             }
-        }
-
-        public override void SetTopic(HistoryType historyType)
-        {
-            AdafruitManager.Instance.UnsubscribeTopic(TopicPath);
-            base.SetTopic(historyType);
-            AdafruitManager.Instance.SubscribeTopic(TopicPath);
         }
     }
 }
