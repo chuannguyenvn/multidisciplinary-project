@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LoginManager : PersistentSingleton<LoginManager>
+public class LoginManager : Singleton<LoginManager>
 {
     public StateMachine<LoginState> StateMachine;
 
@@ -67,6 +67,7 @@ public class LoginManager : PersistentSingleton<LoginManager>
         PlayerPrefs.SetString("KEY", _keyField.text);
         
         ApplicationManager.Instance.StateMachine.ChangeState(ApplicationState.Main);
+        gameObject.SetActive(false);
     }
 
     private void UnsuccessfulLoginHandler()
