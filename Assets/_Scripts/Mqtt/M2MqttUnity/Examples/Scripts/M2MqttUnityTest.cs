@@ -73,6 +73,12 @@ namespace M2MqttUnity.Examples
         private MqttReceiver _receiver = null;
         [SerializeField]
         private TMP_InputField _data = null;
+
+        public void SetLoginCredentials(string username, string key)
+        {
+            mqttUserName = username;
+            mqttPassword = key;
+        }
         
         public void TestPublish()
         {

@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class AdafruitManager : PersistentSingleton<AdafruitManager>
 {
+    public event Action<bool> LoginStatusReceived;
+
     public string Username;
 
     [SerializeField] private M2MqttUnityTest mqttUnityClient;
@@ -15,27 +17,28 @@ public class AdafruitManager : PersistentSingleton<AdafruitManager>
 
     public Action<string, string> MessageReceived;
 
-    private List<string> _plantNames = new() {"dadn"};
-
-    public Dictionary<string, PlantDataController> PlantDataControllersByName = new();
-
-
     private void Start()
     {
-        mqttUnityClient.ConnectionSucceeded += Init;
+        mqttUnityClient.ConnectionSucceeded += ConnectionSucceededHandler;
+        mqttUnityClient.ConnectionFailed += ConnectionFailedHandler;
     }
 
-
-    private void Init()
+    public void TryConnect(string username, string key)
     {
-        foreach (var plantName in _plantNames)
-        {
-            var dataController = Instantiate(ResourceManager.Instance.PlantDataController, transform);
-            dataController.Init(plantName);
-            PlantDataControllersByName.Add(plantName, dataController);
-        }
+        mqttUnityClient.SetLoginCredentials(username, key);
+        mqttUnityClient.Connect();
+        Username = username;
+    }
 
+    private void ConnectionSucceededHandler()
+    {
         mqttUnityClient.OnMessageReceived += (topic, message) => MessageReceived?.Invoke(topic, message);
+        LoginStatusReceived?.Invoke(true);
+    }
+
+    private void ConnectionFailedHandler()
+    {
+        LoginStatusReceived?.Invoke(false);
     }
 
     public void SendMessage(string topic, string content)

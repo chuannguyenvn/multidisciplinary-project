@@ -24,9 +24,9 @@ public class PlantListItemView : MonoBehaviour
 
     public void SetPlantItem(string name, string id)
     {
-        AdafruitManager.Instance.PlantDataControllersByName[name].LightValueChanged += LightStamp.OnSetData;
-        AdafruitManager.Instance.PlantDataControllersByName[name].TemperatureValueChanged += TempStamp.OnSetData;
-        AdafruitManager.Instance.PlantDataControllersByName[name].MoistureValueChanged += MoistureStamp.OnSetData;
+        PlantManager.Instance.PlantDataControllersByName[name].LightValueChanged += LightStamp.OnSetData;
+        PlantManager.Instance.PlantDataControllersByName[name].TemperatureValueChanged += TempStamp.OnSetData;
+        PlantManager.Instance.PlantDataControllersByName[name].MoistureValueChanged += MoistureStamp.OnSetData;
         _nameText.text = name;
         _img.sprite = ResourceManager.Instance.GetImportImage(id);
     }

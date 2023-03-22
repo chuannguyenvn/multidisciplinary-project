@@ -183,63 +183,6 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!1 &116183450
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 116183452}
-  - component: {fileID: 116183451}
-  m_Layer: 0
-  m_Name: MQTT_Receiver
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &116183451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 116183450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 764cdd3ce1b55c94b95c4194d577b755, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  brokerAddress: io.adafruit.com
-  brokerPort: 1883
-  isEncrypted: 0
-  certificateName: 
-  connectionDelay: 500
-  timeoutOnConnection: 30000
-  autoConnect: 1
-  mqttUserName: chuanpro030
-  mqttPassword: aio_CrwU85E68KEcXYoi4yHXTEz05KCK
-  topicSubscribe: chuanpro030/feeds/test
-  topicPublish: 
-  messagePublish: 
-  autoTest: 0
---- !u!4 &116183452
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 116183450}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2087360067}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &201808648
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,7 +639,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 918710231}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: M2MqttUnity.Examples.M2MqttUnityTest, Assembly-CSharp
         m_MethodName: TestPublish
         m_Mode: 1
@@ -2033,73 +1976,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 871541924}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &918710230
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 918710232}
-  - component: {fileID: 918710231}
-  m_Layer: 0
-  m_Name: M2MQTT
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &918710231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 918710230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbaa80705124f9e439d56ca6d5e6db69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  brokerAddress: io.adafruit.com
-  brokerPort: 1883
-  isEncrypted: 0
-  certificateName: 
-  connectionDelay: 500
-  timeoutOnConnection: 30000
-  autoConnect: 1
-  mqttUserName: chuanpro030
-  mqttPassword: aio_MHCu60mRE7tQdzU4U9VLI3WAFiMc
-  autoTest: 0
-  consoleInputField: {fileID: 0}
-  encryptedToggle: {fileID: 0}
-  addressInputField: {fileID: 0}
-  portInputField: {fileID: 0}
-  connectButton: {fileID: 0}
-  disconnectButton: {fileID: 0}
-  testPublishButton: {fileID: 0}
-  clearButton: {fileID: 0}
-  defaultTopic: chuanpro030/feeds/test
-  IsReady: 0
-  topic: chuanpro030/feeds/test
-  _receiver: {fileID: 116183451}
-  _data: {fileID: 1981408001}
---- !u!4 &918710232
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 918710230}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2087360067}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &971862227
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2290,53 +2166,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: -8, y: -5, z: -8, w: -5}
   m_Softness: {x: 0, y: 0}
---- !u!1 &993272565
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 993272567}
-  - component: {fileID: 993272566}
-  m_Layer: 0
-  m_Name: MQTT_Controller
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &993272566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 993272565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b63ea3999383c9b44a365e524d724eb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameController: Controller 1
-  _eventSender: {fileID: 116183451}
-  _output: {fileID: 0}
---- !u!4 &993272567
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 993272565}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2087360067}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1119566466
 GameObject:
   m_ObjectHideFlags: 0
@@ -2526,61 +2355,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 1220}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1155534238
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1155534240}
-  - component: {fileID: 1155534239}
-  m_Layer: 0
-  m_Name: Manager_Visual
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1155534239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1155534238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee23296b7de3973419248d4610cfadc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BlackColor: {r: 0.08235294, g: 0.08235294, b: 0.08235294, a: 1}
-  WhiteColor: {r: 1, g: 1, b: 1, a: 1}
-  InactiveButtonColor: {r: 0.96862745, g: 0.96862745, b: 0.96862745, a: 1}
-  InactiveTextColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
-  LightPrimaryColor: {r: 1, g: 0.8039216, b: 0.5411765, a: 1}
-  TemperaturePrimaryColor: {r: 0.98039216, g: 0.69803923, b: 0.7411765, a: 1}
-  HumidityPrimaryColor: {r: 0.79607844, g: 0.8392157, b: 1, a: 1}
-  LightSecondaryColor: {r: 0.9843137, g: 0.9490196, b: 0.9019608, a: 1}
-  TemperatureSecondaryColor: {r: 0.99215686, g: 0.91764706, b: 0.92941177, a: 1}
-  HumiditySecondaryColor: {r: 0.94509804, g: 0.95686275, b: 1, a: 1}
-  WaterNowColor: {r: 0.9019608, g: 0.9843137, b: 0.93333334, a: 1}
---- !u!4 &1155534240
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1155534238}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1165567528
 GameObject:
   m_ObjectHideFlags: 0
@@ -3164,55 +2938,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorType: 0
---- !u!1 &1452865841
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1452865843}
-  - component: {fileID: 1452865842}
-  m_Layer: 0
-  m_Name: Manager_Resource
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1452865842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1452865841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdd8c0518e878c54eb1970cc04e7885d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlantListView: {fileID: 0}
-  PlantListItemView: {fileID: 6343141370663962035, guid: 487e030c103a3874e9dc945e3789300d,
-    type: 3}
-  PlantDataController: {fileID: 2618346964411353176, guid: 008c5dbd6ec71484d8f8afba282a0521,
-    type: 3}
---- !u!4 &1452865843
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1452865841}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1473743272 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5781260180003041691, guid: 32d2925c9d4fcdc4d87ce9396e22b145,
@@ -4386,57 +4111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e82cc5a39dc94fea964cf687c6bba56a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2087360065
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2087360067}
-  - component: {fileID: 2087360066}
-  m_Layer: 0
-  m_Name: Manager_Adafruit
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2087360066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2087360065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce763feeb632485d958f2c0bcc7c9fa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Username: chuanpro030
-  mqttUnityClient: {fileID: 918710231}
-  mqttReceiver: {fileID: 116183451}
-  mqttController: {fileID: 993272566}
---- !u!4 &2087360067
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2087360065}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 918710232}
-  - {fileID: 116183452}
-  - {fileID: 993272567}
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2093806454
 GameObject:
   m_ObjectHideFlags: 0
