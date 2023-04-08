@@ -7,12 +7,10 @@ using UnityEngine.SceneManagement;
 public class SceneManager : PersistentSingleton<SceneManager>
 {
     private string _currentScene;
-
-    public void QueueWork()
+    protected override void Awake()
     {
-        ChangeScene(Define.SceneName.Main.ToString());
+        base.Awake();
     }
-
     public string GetCurrentScene()
     {
         return _currentScene;

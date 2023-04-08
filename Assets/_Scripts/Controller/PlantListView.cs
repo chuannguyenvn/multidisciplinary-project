@@ -9,37 +9,39 @@ public class PlantListView : MonoBehaviour
     [SerializeField] private PlantListItemView _prefabPlantItem = null;
     [SerializeField] private GameObject _content = null;
 
-    [SerializeField] private TMP_InputField _inputName = null;
-    [SerializeField] private TMP_InputField _inputID = null;
-    [SerializeField] private GameObject _textNameUsed = null;
-    [SerializeField] private GameObject _panelNewPlant = null;
+    [SerializeField]
+    private UIViewManager _uiViewManager = null;
 
     private void Awake()
     {
-        _panelNewPlant.SetActive(false);
-        _textNameUsed.SetActive(false);
         _prefabPlantItem.gameObject.SetActive(false);
     }
     public void OnClickButtonAddNewPlant()
     {
-        _panelNewPlant.SetActive(true);
+        _uiViewManager.SetPanelNewPlant(true);
+    }
+    public void OnClickCancelAddPlant()
+    {
+        _uiViewManager.SetPanelNewPlant(false);
+        _uiViewManager.SetTextNameUsed(false);
+        _uiViewManager.NewPlantName = _uiViewManager.NewPlantID = "";
     }
     public void OnClickSpawnPlantItems()
     {
-        if (PlantManager.Instance.OnCheckNameAlreadyUsed(_inputName.text))
+        if (PlantManager.Instance.OnCheckNameAlreadyUsed(_uiViewManager.NewPlantName))
         {
-            _textNameUsed.SetActive(true);
+            _uiViewManager.SetTextNameUsed(true);
             return;
         }
-        var newName = Utility.RemoveSpacesFromHeadTail(_inputName.text);
+        var newName = Utility.RemoveSpacesFromHeadTail(_uiViewManager.NewPlantName);
         //var newID = Utility.RemoveSpacesFromHeadTail(_inputID.text);
-        var newID = _inputID.text;
+        var newID = _uiViewManager.NewPlantID;
         var item = Utility.InstantiateObject<PlantListItemView>(_prefabPlantItem, _content.transform);
         PlantManager.Instance.InstantiateDataController(newName);
         item.SetPlantItem(newName, newID);
         item.gameObject.SetActive(true);
-        _panelNewPlant.SetActive(false);
-        _inputName.text = _inputID.text = "";
-        _textNameUsed.SetActive(false);
+        _uiViewManager.SetPanelNewPlant(false);
+        _uiViewManager.SetTextNameUsed(false);
+        _uiViewManager.NewPlantName = _uiViewManager.NewPlantID = "";
     }
 }
