@@ -38,7 +38,7 @@ public class PlantListView : MonoBehaviour
         var newID = _uiViewManager.NewPlantID;
         var item = Utility.InstantiateObject<PlantListItemView>(_prefabPlantItem, _content.transform);
         PlantManager.Instance.InstantiateDataController(newName);
-        item.SetPlantItem(newName, newID);
+        item.SetPlantItem(newName, "Plant Image");
         item.gameObject.SetActive(true);
         _uiViewManager.SetPanelNewPlant(false);
         _uiViewManager.SetTextNameUsed(false);

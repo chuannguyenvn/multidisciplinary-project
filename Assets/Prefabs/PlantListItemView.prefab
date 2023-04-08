@@ -417,10 +417,22 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 7813878198539020419}
+  m_TargetGraphic: {fileID: 1782601351502421666}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6343141370663962035}
+        m_TargetAssemblyTypeName: PlantListItemView, Assembly-CSharp
+        m_MethodName: OnClickShowPlantInfo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7813878198816700622
 GameObject:
   m_ObjectHideFlags: 0
