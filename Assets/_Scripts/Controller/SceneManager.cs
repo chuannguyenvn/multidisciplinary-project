@@ -4,19 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneManager : PersistentSingleton<SceneManager>, IMachineUser
+public class SceneManager : PersistentSingleton<SceneManager>
 {
     private string _currentScene;
 
-    private void Start()
-    {
-        QueueWork();
-    }
-
     public void QueueWork()
     {
-        ApplicationManager.Instance.StateMachine.Configure(Define.ApplicationState.Main)
-            .OnEntry(() => ChangeScene(Define.SceneName.Main.ToString()));
+        ChangeScene(Define.SceneName.Main.ToString());
     }
 
     public string GetCurrentScene()

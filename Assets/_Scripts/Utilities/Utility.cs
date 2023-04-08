@@ -527,4 +527,18 @@ public static class Utility
     {
         return Vector2.Lerp(a, b, distance / Vector2.Distance(a, b));
     }
+    public static string RemoveSpacesFromHeadTail(string str)
+    {
+        if (str[0].ToString() != " " && str[str.Length - 1].ToString() != " ")
+            return str;
+        if (str[0].ToString() == " ")
+        {
+            str = str.Remove(0, 1);
+        }
+        if (str[str.Length - 1].ToString() == " ")
+        {
+            str = str.Remove(str.Length - 1, 1);
+        }
+        return RemoveSpacesFromHeadTail(str);
+    }
 }

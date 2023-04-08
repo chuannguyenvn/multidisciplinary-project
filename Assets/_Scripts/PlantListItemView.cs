@@ -17,11 +17,6 @@ public class PlantListItemView : MonoBehaviour
     public PlantInformationStamp TempStamp = null;
     public PlantInformationStamp MoistureStamp = null;
 
-    private void Start()
-    {
-        //SetPlantItem("dadn", "");
-    }
-
     public void SetPlantItem(string name, string id)
     {
         PlantManager.Instance.PlantDataControllersByName[name].LightValueChanged += LightStamp.OnSetData;

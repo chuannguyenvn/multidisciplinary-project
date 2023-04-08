@@ -160,8 +160,7 @@ MonoBehaviour:
   m_text: New Text
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ea7ecd901d0599e43aec7b80be05bad6, type: 2}
-  m_sharedMaterial: {fileID: 7838063453547157423, guid: ea7ecd901d0599e43aec7b80be05bad6,
-    type: 2}
+  m_sharedMaterial: {fileID: 7838063453547157423, guid: ea7ecd901d0599e43aec7b80be05bad6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -251,7 +250,6 @@ GameObject:
   - component: {fileID: 2511200256006684197}
   - component: {fileID: 2511200256006684199}
   - component: {fileID: 8166216108765191610}
-  - component: {fileID: 8132379123555559720}
   m_Layer: 5
   m_Name: PlantInformationStamp
   m_TagString: Untagged
@@ -302,25 +300,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e59d5bf05ef52f45b13a358ce9ba50c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _historyType: 0
-  _dataReceiver: {fileID: 8132379123555559720}
   _icon: {fileID: 1815277543938023606}
   _background: {fileID: 8314750363714799908}
   _informationText: {fileID: 7181813972476205323}
---- !u!114 &8132379123555559720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2511200256006684194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dadb5de08ed4e3596aff0c5bd40a213, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlantName: plant-1
-  Topic: 
 --- !u!1 &9132664548009830185
 GameObject:
   m_ObjectHideFlags: 0

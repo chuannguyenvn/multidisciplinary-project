@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 8663081321560768431}
   - component: {fileID: 8663081321560768416}
   m_Layer: 5
-  m_Name: Adafruit _Password
+  m_Name: Password
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -585,7 +585,7 @@ GameObject:
   - component: {fileID: 8663081322180356771}
   - component: {fileID: 8663081322180356772}
   m_Layer: 5
-  m_Name: Adafruit _Username
+  m_Name: Username
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

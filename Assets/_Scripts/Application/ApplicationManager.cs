@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ApplicationManager : PersistentSingleton<ApplicationManager>, IMachineUser
+public class ApplicationManager : PersistentSingleton<ApplicationManager>
 {
-    public StateMachine<Define.ApplicationState> StateMachine;
+    //public StateMachine<Define.ApplicationState> StateMachine;
 
     protected override void Awake()
     {
         base.Awake();
-        StateMachine = new StateMachine<Define.ApplicationState>(this, Define.ApplicationState.Login);
+        //StateMachine = new StateMachine<Define.ApplicationState>(this, Define.ApplicationState.Login);
     }
 
     private void Start()
@@ -20,6 +20,6 @@ public class ApplicationManager : PersistentSingleton<ApplicationManager>, IMach
 
     public void QueueWork()
     {
-        StateMachine.StartMachine();
+        //StateMachine.StartMachine();
     }
 }
