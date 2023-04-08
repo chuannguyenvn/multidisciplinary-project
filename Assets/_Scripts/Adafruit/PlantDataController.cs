@@ -20,17 +20,17 @@ namespace Adafruit
         public void Init(string plantName)
         {
             _lightDataSender.PlantName = _lightDataReceiver.PlantName = plantName;
-            _lightDataSender.Topic = _lightDataReceiver.Topic = Constants.TOPIC_LIGHT;
+            _lightDataSender.Topic = _lightDataReceiver.Topic = Define.TOPIC_LIGHT;
             _lightDataReceiver.OnMessageReceived += value => LightValueChanged?.Invoke(value);
             _lightDataReceiver.gameObject.SetActive(true);
 
             _temperatureDataSender.PlantName = _temperatureDataReceiver.PlantName = plantName;
-            _temperatureDataSender.Topic = _temperatureDataReceiver.Topic = Constants.TOPIC_TEMPERATURE;
+            _temperatureDataSender.Topic = _temperatureDataReceiver.Topic = Define.TOPIC_TEMPERATURE;
             _temperatureDataReceiver.OnMessageReceived += value => TemperatureValueChanged?.Invoke(value);
             _temperatureDataReceiver.gameObject.SetActive(true);
 
             _moistureDataSender.PlantName = _moistureDataReceiver.PlantName = plantName;
-            _moistureDataSender.Topic = _moistureDataReceiver.Topic = Constants.TOPIC_MOISTURE;
+            _moistureDataSender.Topic = _moistureDataReceiver.Topic = Define.TOPIC_MOISTURE;
             _moistureDataReceiver.OnMessageReceived += value => MoistureValueChanged?.Invoke(value);
             _moistureDataReceiver.gameObject.SetActive(true);
         }
