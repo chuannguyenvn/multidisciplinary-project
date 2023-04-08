@@ -15,8 +15,8 @@ public class SceneManager : PersistentSingleton<SceneManager>, IMachineUser
 
     public void QueueWork()
     {
-        ApplicationManager.Instance.StateMachine.Configure(ApplicationState.Main)
-            .OnEntry(() => ChangeScene("Main"));
+        ApplicationManager.Instance.StateMachine.Configure(Define.ApplicationState.Main)
+            .OnEntry(() => ChangeScene(Define.SceneName.Main.ToString()));
     }
 
     public string GetCurrentScene()

@@ -5,10 +5,10 @@ namespace Adafruit
 {
     public class DataSender : DataWorker
     {
-        public void SendMessage(string content)
-        {
-            AdafruitManager.Instance.SendMessage(TopicPath, content);
-            LogMessage(content);
-        }
+        //public void SendMessage(string content)
+        //{
+        //    AdafruitManager.Instance.SendMessage(TopicPath, content);
+        //    LogMessage(content);
+        //}
     }
 }

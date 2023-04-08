@@ -19,7 +19,7 @@ public class PlantListItemView : MonoBehaviour
 
     private void Start()
     {
-        SetPlantItem("dadn", "");
+        //SetPlantItem("dadn", "");
     }
 
     public void SetPlantItem(string name, string id)

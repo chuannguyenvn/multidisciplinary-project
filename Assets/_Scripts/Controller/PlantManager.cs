@@ -17,4 +17,10 @@ public class PlantManager : Singleton<PlantManager>
             PlantDataControllersByName.Add(plantName, dataController);
         }
     }
+    public void InstantiatePlantDataController(string plantName)
+    {
+        var dataController = Instantiate(ResourceManager.Instance.PlantDataController, transform);
+        dataController.Init(plantName);
+        PlantDataControllersByName.Add(plantName, dataController);
+    }
 }

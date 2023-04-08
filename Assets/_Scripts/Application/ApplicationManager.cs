@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class ApplicationManager : PersistentSingleton<ApplicationManager>, IMachineUser
 {
-    public StateMachine<ApplicationState> StateMachine;
+    public StateMachine<Define.ApplicationState> StateMachine;
 
     protected override void Awake()
     {
         base.Awake();
-        StateMachine = new StateMachine<ApplicationState>(this, ApplicationState.Login);
+        StateMachine = new StateMachine<Define.ApplicationState>(this, Define.ApplicationState.Login);
     }
 
     private void Start()

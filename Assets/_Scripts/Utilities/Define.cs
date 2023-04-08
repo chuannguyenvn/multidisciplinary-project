@@ -9,4 +9,17 @@ public class Define : MonoBehaviour
         Login = 0,
         Main = 1,
     }
+    public enum ApplicationState
+    {
+        Login,
+        Main,
+    }
+
+    public enum LoginState
+    {
+        Waiting,
+        Proceeding,
+        Failed,
+        Success,
+    }
 }

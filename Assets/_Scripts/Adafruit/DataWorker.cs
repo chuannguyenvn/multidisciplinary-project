@@ -9,7 +9,8 @@ namespace Adafruit
     {
         public string PlantName;
         public string Topic;
-        public string TopicPath => AdafruitManager.Instance.ConstructTopicPathString(PlantName + '.' + Topic);
+        //public string TopicPath => AdafruitManager.Instance.ConstructTopicPathString(PlantName + '.' + Topic);
+        public string TopicPath;
         public List<CommunicationLog> History = new();
 
         public void LogMessage(string content)
