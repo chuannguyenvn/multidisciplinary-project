@@ -132,13 +132,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 76269871}
+  - component: {fileID: 76269872}
   m_Layer: 5
   m_Name: View_ARMode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &76269871
 RectTransform:
   m_ObjectHideFlags: 0
@@ -152,13 +153,26 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1296854210}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &76269872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76269870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f86297591090f584cb99547d3cf422f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ViewName: ARMode
 --- !u!1 &106810239
 GameObject:
   m_ObjectHideFlags: 0
@@ -1014,7 +1028,6 @@ RectTransform:
   m_Children:
   - {fileID: 558083644}
   - {fileID: 852501671}
-  - {fileID: 524405631}
   - {fileID: 1296854210}
   - {fileID: 848276831}
   m_Father: {fileID: 0}
@@ -1787,13 +1800,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 524405631}
+  - component: {fileID: 524405632}
   m_Layer: 5
-  m_Name: PlantInfomation
+  m_Name: View_PlantInfor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &524405631
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1801,7 +1815,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 524405630}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1814,14 +1828,27 @@ RectTransform:
   - {fileID: 1365508274}
   - {fileID: 858172408}
   - {fileID: 1507789522}
-  m_Father: {fileID: 260508406}
-  m_RootOrder: 2
+  m_Father: {fileID: 1296854210}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &524405632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 524405630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f86297591090f584cb99547d3cf422f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ViewName: PlantInfor
 --- !u!1 &558083643
 GameObject:
   m_ObjectHideFlags: 0
@@ -1837,7 +1864,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &558083644
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4165,7 +4192,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -80, y: 1220}
+  m_SizeDelta: {x: 0, y: 1220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1159053195
 GameObject:
@@ -4952,7 +4979,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1296854210
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4965,12 +4992,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 524405631}
   - {fileID: 1809437761}
   - {fileID: 76269871}
   - {fileID: 1877883956}
   - {fileID: 1752505919}
   m_Father: {fileID: 260508406}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4993,6 +5021,8 @@ MonoBehaviour:
   _viewARMode: {fileID: 76269870}
   _viewMyAccount: {fileID: 1877883955}
   _viewNewPlant: {fileID: 1752505918}
+  _viewPlantInformation: {fileID: 524405630}
+  _topMenu: {fileID: 558083643}
   _textNameUsed: {fileID: 1214178925}
   _inputName: {fileID: 2130440722}
   _inputID: {fileID: 1348696440}
@@ -7215,6 +7245,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1752505919}
+  - component: {fileID: 1752505920}
   m_Layer: 5
   m_Name: View_NewPlant
   m_TagString: Untagged
@@ -7236,13 +7267,26 @@ RectTransform:
   m_Children:
   - {fileID: 1946378958}
   m_Father: {fileID: 1296854210}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1752505920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752505918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f86297591090f584cb99547d3cf422f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ViewName: NewPlant
 --- !u!1001 &1765916438
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7354,6 +7398,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1809437761}
+  - component: {fileID: 1809437762}
   m_Layer: 5
   m_Name: View_ListPlant
   m_TagString: Untagged
@@ -7375,13 +7420,26 @@ RectTransform:
   m_Children:
   - {fileID: 2093806455}
   m_Father: {fileID: 1296854210}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1809437762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809437760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f86297591090f584cb99547d3cf422f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ViewName: ListPlant
 --- !u!1 &1873400415
 GameObject:
   m_ObjectHideFlags: 0
@@ -7525,6 +7583,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1877883956}
+  - component: {fileID: 1877883957}
   m_Layer: 5
   m_Name: View_Account
   m_TagString: Untagged
@@ -7546,13 +7605,26 @@ RectTransform:
   m_Children:
   - {fileID: 1300797314}
   m_Father: {fileID: 1296854210}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1877883957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877883955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f86297591090f584cb99547d3cf422f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ViewName: Account
 --- !u!1 &1899396672
 GameObject:
   m_ObjectHideFlags: 0
@@ -8733,7 +8805,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 538124999255408951, guid: 15ecfb67a42bea249a6f1ea0e2308c79, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 538124999255408951, guid: 15ecfb67a42bea249a6f1ea0e2308c79, type: 3}
       propertyPath: m_AnchorMax.x
@@ -9052,6 +9124,10 @@ PrefabInstance:
     - target: {fileID: 7813878198511020376, guid: 487e030c103a3874e9dc945e3789300d, type: 3}
       propertyPath: m_Name
       value: PlantListItemView
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813878198511020376, guid: 487e030c103a3874e9dc945e3789300d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7813878198511020377, guid: 487e030c103a3874e9dc945e3789300d, type: 3}
       propertyPath: m_Pivot.x

@@ -16,6 +16,9 @@ public class PlantListItemView : MonoBehaviour
     public PlantInformationStamp LightStamp = null;
     public PlantInformationStamp TempStamp = null;
     public PlantInformationStamp MoistureStamp = null;
+    [Space]
+    [SerializeField]
+    private UIViewManager _uiViewManager = null;
 
     public void SetPlantItem(string name, string id)
     {
@@ -28,6 +31,6 @@ public class PlantListItemView : MonoBehaviour
     
     public void OnClickShowPlantInfo()
     {
-        
+        //_uiViewManager.
     }
 }

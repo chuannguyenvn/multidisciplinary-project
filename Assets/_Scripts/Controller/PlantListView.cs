@@ -18,11 +18,11 @@ public class PlantListView : MonoBehaviour
     }
     public void OnClickButtonAddNewPlant()
     {
-        _uiViewManager.SetPanelNewPlant(true);
+        _uiViewManager.GetUIViewWithViewName(Define.ViewName.NewPlant.ToString()).gameObject.SetActive(true);
     }
     public void OnClickCancelAddPlant()
     {
-        _uiViewManager.SetPanelNewPlant(false);
+        _uiViewManager.GetUIViewWithViewName(Define.ViewName.NewPlant.ToString()).gameObject.SetActive(false);
         _uiViewManager.SetTextNameUsed(false);
         _uiViewManager.NewPlantName = _uiViewManager.NewPlantID = "";
     }
@@ -40,7 +40,7 @@ public class PlantListView : MonoBehaviour
         PlantManager.Instance.InstantiateDataController(newName);
         item.SetPlantItem(newName, "Plant Image");
         item.gameObject.SetActive(true);
-        _uiViewManager.SetPanelNewPlant(false);
+        _uiViewManager.GetUIViewWithViewName(Define.ViewName.NewPlant.ToString()).gameObject.SetActive(false);
         _uiViewManager.SetTextNameUsed(false);
         _uiViewManager.NewPlantName = _uiViewManager.NewPlantID = "";
     }

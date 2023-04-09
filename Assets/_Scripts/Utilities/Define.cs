@@ -25,4 +25,12 @@ public class Define : MonoBehaviour
         Failed,
         Success,
     }
+    public enum ViewName
+    {
+        PlantInfor = 0,
+        ListPlant = 1,
+        ARMode = 2,
+        Account = 3,
+        NewPlant = 4,
+    }
 }
