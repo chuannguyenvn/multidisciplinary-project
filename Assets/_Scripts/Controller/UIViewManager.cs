@@ -5,18 +5,8 @@ using TMPro;
 
 public class UIViewManager : MonoBehaviour
 {
-    [Header("View")]
     [SerializeField]
-    private GameObject _viewListPlant = null;
-    [SerializeField]
-    private GameObject _viewARMode = null;
-    [SerializeField]
-    private GameObject _viewMyAccount = null;
-    [SerializeField]
-    private GameObject _viewNewPlant = null;
-    [SerializeField]
-    private GameObject _viewPlantInformation = null;
-    [Space]
+    private GameObject _panelHistory = null;
     [SerializeField]
     private GameObject _topMenu = null;
     [SerializeField]
@@ -27,24 +17,15 @@ public class UIViewManager : MonoBehaviour
     private TMP_InputField _inputID = null;
 
     public Dictionary<string, UIView> DictUIView = new Dictionary<string, UIView>();
-
-    private void Awake()
+    private List<string> _lstShownView;
+    public List<string> LstShownView
     {
-        Initialize();
-    }
-    private void Start()
-    {
-        OnClickShowViewListPlant();
-    }
-    private void Initialize()
-    {
-        UIView[] viewController = GetComponentsInChildren<UIView>(true);
-        foreach (var view in viewController)
+        get
         {
-            view.Initialize(this);
-            DictUIView.Add(view.ViewName, view);
+            if (_lstShownView == null) _lstShownView = new List<string>();
+            return _lstShownView;
         }
-        //Debug.LogError("count of dct: " + DictUIView.Count);
+        set => _lstShownView = value;
     }
     public string NewPlantName
     {
@@ -56,6 +37,47 @@ public class UIViewManager : MonoBehaviour
         get => _inputID.text;
         set => _inputID.text = value;
     }
+    private void Awake()
+    {
+        Initialize();
+        //SceneManager.Instance.ShowPanelInfor += OnClickShowViewPlantInfor;
+        //SceneManager.Instance.ShowAccount += OnClickShowViewAccount;
+        //SceneManager.Instance.ShowListPlant += OnClickShowViewListPlant;
+        //SceneManager.Instance.Init += Initialize;
+    }
+    private void Start()
+    {
+        OnClickShowViewListPlant();
+        var param = SceneManager.Instance.CurrentParam;
+        if (param != null)
+        {
+            switch (param.viewName)
+            {
+                case Define.ViewName.PlantInfor:
+                    OnShowPlantInfoPanel();
+                    break;
+
+                case Define.ViewName.Account:
+                    OnClickShowViewAccount();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    }
+    private void Initialize()
+    {
+        UIView[] viewController = GetComponentsInChildren<UIView>(true);
+        foreach (var view in viewController)
+        {
+            view.Initialize(this);
+            if (!DictUIView.ContainsKey(view.ViewName))
+                DictUIView.Add(view.ViewName, view);
+            else Debug.LogError("trung");
+        }
+        //Debug.LogError("count of dct: " + DictUIView.Count);
+    }
     public void OnClickShowViewListPlant()
     {
         foreach (var pair in DictUIView)
@@ -65,15 +87,12 @@ public class UIViewManager : MonoBehaviour
             else pair.Value.gameObject.SetActive(false);
         }
         _textNameUsed.SetActive(false);
+        _topMenu.SetActive(true);
+        LstShownView.Add(Define.ViewName.ListPlant.ToString());
     }
     public void OnClickShowViewARMode()
     {
-        foreach (var pair in DictUIView)
-        {
-            if (pair.Key == Define.ViewName.ARMode.ToString())
-                pair.Value.gameObject.SetActive(true);
-            else pair.Value.gameObject.SetActive(false);
-        }
+        SceneManager.Instance.ChangeScene(Define.SceneName.AR.ToString(), null);
     }
     public void OnClickShowViewAccount()
     {
@@ -83,7 +102,10 @@ public class UIViewManager : MonoBehaviour
                 pair.Value.gameObject.SetActive(true);
             else pair.Value.gameObject.SetActive(false);
         }
+        NewPlantID = NewPlantName = "";
+        LstShownView.Add(Define.ViewName.Account.ToString());
     }
+    
     public UIView GetUIViewWithViewName(string name)
     {
         foreach (var pair in DictUIView)
@@ -98,8 +120,34 @@ public class UIViewManager : MonoBehaviour
         _textNameUsed.SetActive(status);
     }
 
+    #region Plant Infor
     public void OnShowPlantInfoPanel()
     {
-        _viewPlantInformation.SetActive(true);
+        OnClickShowViewPlantInfor();
+        _topMenu.SetActive(false);
     }
+    public void OnClickShowViewPlantInfor()
+    {
+        foreach (var pair in DictUIView)
+        {
+            if (pair.Key == Define.ViewName.PlantInfor.ToString())
+                pair.Value.gameObject.SetActive(true);
+            else pair.Value.gameObject.SetActive(false);
+        }
+        NewPlantID = NewPlantName = "";
+        LstShownView.Add(Define.ViewName.PlantInfor.ToString());
+    }
+    public void OnClickBackToListPlant()
+    {
+        OnClickShowViewListPlant();
+    }
+    public void OnClickBtnInforStamp()
+    {
+        //lay infor cua cay dc target
+        //lay = plantlistviewitem roi reference sang inforStamp
+        //show panel history
+
+    }
+
+    #endregion
 }

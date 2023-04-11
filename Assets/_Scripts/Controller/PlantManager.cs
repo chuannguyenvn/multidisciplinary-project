@@ -35,7 +35,7 @@ public class PlantManager : Singleton<PlantManager>
         dataController.Init(plantName);
         PlantDataControllersByName.Add(plantName, dataController);
         _plantNames.Add(plantName);
-        CheckPlant();
+        //CheckPlant();
     }
     private void CheckPlant()
     {

@@ -11,6 +11,7 @@ public class Define : MonoBehaviour
     {
         Login = 0,
         Main = 1,
+        AR = 2,
     }
     public enum ApplicationState
     {
@@ -32,5 +33,9 @@ public class Define : MonoBehaviour
         ARMode = 2,
         Account = 3,
         NewPlant = 4,
+    }
+    public enum Message
+    {
+        ShowPanelInfo = 0,
     }
 }

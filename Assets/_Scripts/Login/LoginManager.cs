@@ -18,7 +18,7 @@ public class LoginManager : Singleton<LoginManager>
     public void OnClickLogin()
     {
         //them ham check username va password o day
-        SceneManager.Instance.ChangeScene(Define.SceneName.Main.ToString());
+        SceneManager.Instance.ChangeScene(Define.SceneName.Main.ToString(), null);
     }
     private void LoadPreviousSessionCredentials()
     {

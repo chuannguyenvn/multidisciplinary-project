@@ -17,8 +17,8 @@ public class PlantInformationStamp : MonoBehaviour
         _informationText.text = data;
         Debug.Log("aaaaaaaaaaaaaa");
     }
-
-    public void OnClickShowInfoPanel()
+    public string OnGetData()
     {
+        return _informationText.text;
     }
 }

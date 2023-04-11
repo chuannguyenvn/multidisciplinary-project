@@ -31,6 +31,6 @@ public class PlantListItemView : MonoBehaviour
     
     public void OnClickShowPlantInfo()
     {
-        //_uiViewManager.
+        _uiViewManager.OnShowPlantInfoPanel();
     }
 }

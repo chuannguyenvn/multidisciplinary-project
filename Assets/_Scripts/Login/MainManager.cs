@@ -7,6 +7,6 @@ public class MainManager : Singleton<MainManager>
     // Start is called before the first frame update
     public void OnClickLogOut()
     {
-        SceneManager.Instance.ChangeScene(Define.SceneName.Login.ToString());
+        SceneManager.Instance.ChangeScene(Define.SceneName.Login.ToString(), null);
     }
 }
