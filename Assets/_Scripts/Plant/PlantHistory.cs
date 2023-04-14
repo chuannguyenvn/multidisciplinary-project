@@ -9,9 +9,9 @@ using Random = UnityEngine.Random;
 
 public class PlantHistory : Singleton<PlantHistory>
 {
-    public Action<HistoryType> HistoryTypeChanged;
+    public Action<Define.HistoryType> HistoryTypeChanged;
 
-    public HistoryType HistoryType;
+    public Define.HistoryType HistoryType;
 
     [SerializeField] private Button hourlyButton;
     [SerializeField] private Button dailyButton;
@@ -43,30 +43,28 @@ public class PlantHistory : Singleton<PlantHistory>
             HistoryTypeChanged -= barUnit.HistoryChangedHandler;
         }
     }
-
-    private void HistoryTypeChangedHandler(HistoryType historyType)
+    public void OnChangeHistoryType(Define.HistoryType type)
     {
+        HistoryType = type;
+        HistoryTypeChanged?.Invoke(HistoryType);
+    }
+    private void HistoryTypeChangedHandler(Define.HistoryType historyType)
+    {
+        Debug.LogError("chay cai nay");
         switch (historyType)
         {
-            case HistoryType.Light:
+            case Define.HistoryType.Light:
                 background.color = VisualManager.Instance.GetColor(ColorType.LightSecondary);
                 icon.sprite = lightSprite;
                 break;
-            case HistoryType.Temperature:
+            case Define.HistoryType.Temperature:
                 background.color = VisualManager.Instance.GetColor(ColorType.TemperatureSecondary);
                 icon.sprite = temperatureSprite;
                 break;
-            case HistoryType.Humidity:
+            case Define.HistoryType.Humidity:
                 background.color = VisualManager.Instance.GetColor(ColorType.HumiditySecondary);
                 icon.sprite = humiditySprite;
                 break;
         }
     }
-}
-
-public enum HistoryType
-{
-    Light,
-    Temperature,
-    Humidity,
 }

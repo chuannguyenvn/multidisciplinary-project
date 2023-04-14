@@ -41,19 +41,19 @@ public class BarUnit : MonoBehaviour
         _maxData = max;
     }
 
-    public void HistoryChangedHandler(HistoryType historyType)
+    public void HistoryChangedHandler(Define.HistoryType historyType)
     {
         switch (historyType)
         {
-            case HistoryType.Light:
+            case Define.HistoryType.Light:
                 frontImage.color = VisualManager.Instance.GetColor(ColorType.LightPrimary);
                 backImage.color = VisualManager.Instance.GetColor(ColorType.LightSecondary);
                 break;
-            case HistoryType.Temperature:
+            case Define.HistoryType.Temperature:
                 frontImage.color = VisualManager.Instance.GetColor(ColorType.TemperaturePrimary);
                 backImage.color = VisualManager.Instance.GetColor(ColorType.TemperatureSecondary);
                 break;
-            case HistoryType.Humidity:
+            case Define.HistoryType.Humidity:
                 frontImage.color = VisualManager.Instance.GetColor(ColorType.HumidityPrimary);
                 backImage.color = VisualManager.Instance.GetColor(ColorType.HumiditySecondary);
                 break;

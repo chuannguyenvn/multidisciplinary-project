@@ -20,10 +20,15 @@ public class ImageRecognition : MonoBehaviour
     public void OnDisable()
     {
         _arTrackedImageManager.trackedImagesChanged -= OnShowPanel;
+        _arTrackedImageManager.trackedImagesChanged += OnHidePanel;
     }
 
     public void OnShowPanel(ARTrackedImagesChangedEventArgs args)
     {
         _panel.SetActive(true);
+    }
+    public void OnHidePanel(ARTrackedImagesChangedEventArgs args)
+    {
+        _panel.SetActive(false);
     }
 }

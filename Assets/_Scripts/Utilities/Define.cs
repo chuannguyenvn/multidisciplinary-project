@@ -33,9 +33,17 @@ public class Define : MonoBehaviour
         ARMode = 2,
         Account = 3,
         NewPlant = 4,
+        History = 5,
+        EditPlant = 6,
     }
     public enum Message
     {
         ShowPanelInfo = 0,
+    }
+    public enum HistoryType
+    {
+        Light,
+        Temperature,
+        Humidity,
     }
 }

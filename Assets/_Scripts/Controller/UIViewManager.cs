@@ -40,10 +40,6 @@ public class UIViewManager : MonoBehaviour
     private void Awake()
     {
         Initialize();
-        //SceneManager.Instance.ShowPanelInfor += OnClickShowViewPlantInfor;
-        //SceneManager.Instance.ShowAccount += OnClickShowViewAccount;
-        //SceneManager.Instance.ShowListPlant += OnClickShowViewListPlant;
-        //SceneManager.Instance.Init += Initialize;
     }
     private void Start()
     {
@@ -104,6 +100,30 @@ public class UIViewManager : MonoBehaviour
         }
         NewPlantID = NewPlantName = "";
         LstShownView.Add(Define.ViewName.Account.ToString());
+    }
+    public void OnClickShowViewHistory()
+    {
+        foreach (var pair in DictUIView)
+        {
+            if (pair.Key == Define.ViewName.History.ToString())
+            {
+                pair.Value.gameObject.SetActive(true);
+            }
+            else pair.Value.gameObject.SetActive(false);
+        }
+        //LstShownView.Add(Define.ViewName.History.ToString());
+    }
+    public void OnClickShowViewEdit()
+    {
+        foreach (var pair in DictUIView)
+        {
+            if (pair.Key == Define.ViewName.EditPlant.ToString())
+            {
+                pair.Value.gameObject.SetActive(true);
+            }
+            else pair.Value.gameObject.SetActive(false);
+        }
+        //LstShownView.Add(Define.ViewName.History.ToString());
     }
     
     public UIView GetUIViewWithViewName(string name)
