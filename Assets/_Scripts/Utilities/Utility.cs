@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
+
 using Random = UnityEngine.Random;
 
 public static class Utility
@@ -540,5 +542,9 @@ public static class Utility
             str = str.Remove(str.Length - 1, 1);
         }
         return RemoveSpacesFromHeadTail(str);
+    }
+    public static Sprite ConvertToSprite(Texture2D texture)
+    {
+        return Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
     }
 }

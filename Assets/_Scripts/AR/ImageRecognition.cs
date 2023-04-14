@@ -31,4 +31,5 @@ public class ImageRecognition : MonoBehaviour
     {
         _panel.SetActive(false);
     }
+
 }

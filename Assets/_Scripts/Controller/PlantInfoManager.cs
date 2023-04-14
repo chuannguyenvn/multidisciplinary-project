@@ -31,7 +31,6 @@ public class PlantInfoManager : MonoBehaviour
     }
     public void OnClickEdit()
     {
-        Debug.LogError("click edit");
         _uiViewManager.OnClickShowViewEdit();
     }
 
