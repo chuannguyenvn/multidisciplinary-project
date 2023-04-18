@@ -10,8 +10,6 @@ public class UIViewManager : MonoBehaviour
     [SerializeField]
     private GameObject _topMenu = null;
     [SerializeField]
-    private GameObject _textNameUsed = null;
-    [SerializeField]
     private TMP_InputField _inputName = null;
     [SerializeField]
     private TMP_InputField _inputID = null;
@@ -82,7 +80,6 @@ public class UIViewManager : MonoBehaviour
                 pair.Value.gameObject.SetActive(true);
             else pair.Value.gameObject.SetActive(false);
         }
-        _textNameUsed.SetActive(false);
         _topMenu.SetActive(true);
         LstShownView.Add(Define.ViewName.ListPlant.ToString());
     }
@@ -134,10 +131,6 @@ public class UIViewManager : MonoBehaviour
                 return pair.Value;
         }
         return null;
-    }
-    public void SetTextNameUsed(bool status)
-    {
-        _textNameUsed.SetActive(status);
     }
 
     #region Plant Infor

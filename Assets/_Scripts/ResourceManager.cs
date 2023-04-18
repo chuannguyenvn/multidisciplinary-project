@@ -1,20 +1,95 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Communications.Requests;
+using Communications.Responses;
+using Newtonsoft.Json;
 using UnityEngine;
+using UnityEngine.Networking;
 using System.IO;
-using Adafruit;
 
 public class ResourceManager : PersistentSingleton<ResourceManager>
 {
     // @formatter:off
     
-    [Header("Plant List")] 
-    public PlantListView PlantListView;
-    public PlantListItemView PlantListItemView;
-    
     [Header("Data")]
-    public PlantDataController PlantDataController;
-    
+    //public PlantDataController PlantDataController;
+
+    public string bearerKey = "";
+    private IEnumerator Start()
+    {
+        yield return RequestCreator.SendRequest<AuthenticationResponse>(
+            endpoint: "dadn.azurewebsites.net/authentication/login",
+            requestType: RequestCreator.Type.POST,
+            bearerKey: "",
+            objectToSend: new AuthenticationRequest() { Username = "Chuan", Password = "chuan123" },
+            callback: (success, response) =>
+            {
+                if (success)
+                {
+                    bearerKey = response.Token;
+                    Debug.Log("Login successfully with bearer key: " + bearerKey);
+                }
+                else
+                {
+                    Debug.Log("Login failed.");
+                }
+            });
+
+        //get all plants data
+        yield return RequestCreator.SendRequest<GetPlantResponse>(
+            endpoint: "dadn.azurewebsites.net/plantmanagement/get",
+            requestType: RequestCreator.Type.GET,
+            bearerKey: bearerKey,
+            callback: (success, response) =>
+            {
+                if (success)
+                {
+                    foreach (var plantData in response.PlantInformations)
+                    {
+                        //Debug.LogError(string.Format("Id: {0}, name: {1}", plantData.Id, plantData.Name));
+                        //PlantManager.Instance.ListPlantName.Add(plantData.Id.ToString());
+                        PlantDataController dataController = new PlantDataController();
+                        dataController.Init(plantData.Id, plantData.Name, plantData.CreatedDate, plantData.RecognizerCode);
+                        PlantManager.Instance.DctPlantData.Add(plantData.Id, dataController);
+                    }
+                }
+                else
+                {
+                    Debug.LogError("failed to get all plants data");
+                }
+            });
+
+        //yield return RequestCreator.SendRequest(endpoint: "dadn.azurewebsites.net/plantmanagement/add",
+        //requestType: RequestCreator.Type.POST,
+        //bearerKey: bearerKey,
+        //objectToSend: new AddPlantRequest() { Name = "Cây cute", Photo = "123123" },
+        //callback: success =>
+        //{
+        //    if (success) Debug.Log("Added a new plant.");
+        //    else Debug.Log("Adding plant failed.");
+        //});
+
+        //yield return RequestCreator.SendRequest<PlantDataResponse>(
+        //    endpoint: "dadn.azurewebsites.net/plantdata/1/latest",
+        //    requestType: RequestCreator.Type.GET,
+        //    bearerKey: bearerKey,
+        //    callback: (success, response) =>
+        //    {
+        //        if (success)
+        //        {
+        //            foreach (var point in response.PlantDataPoints)
+        //            {
+        //                Debug.Log(point.Timestamp + ": " + point.LightValue);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            Debug.Log("Failed to get plant's data.");
+        //        }
+        //    });
+    }
+
     public Sprite GetImportImage(string id)
     {
         if (string.IsNullOrEmpty(id))

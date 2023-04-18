@@ -23,16 +23,13 @@ public class PlantListView : MonoBehaviour
     public void OnClickCancelAddPlant()
     {
         _uiViewManager.OnClickShowViewListPlant();
-        _uiViewManager.SetTextNameUsed(false);
         _uiViewManager.NewPlantName = _uiViewManager.NewPlantID = "";
     }
     public void OnClickSpawnPlantItems()
     {
-        if (PlantManager.Instance.OnCheckNameAlreadyUsed(_uiViewManager.NewPlantName))
-        {
-            _uiViewManager.SetTextNameUsed(true);
-            return;
-        }
+        //gui request tao cay moi va lay data ve, sau do generate data controller
+        //
+
         var newName = Utility.RemoveSpacesFromHeadTail(_uiViewManager.NewPlantName);
         //var newID = Utility.RemoveSpacesFromHeadTail(_inputID.text);
         var newID = _uiViewManager.NewPlantID;
@@ -42,7 +39,6 @@ public class PlantListView : MonoBehaviour
         item.gameObject.SetActive(true);
 
         _uiViewManager.OnClickShowViewListPlant();
-        _uiViewManager.SetTextNameUsed(false);
         _uiViewManager.NewPlantName = _uiViewManager.NewPlantID = "";
     }
 }
