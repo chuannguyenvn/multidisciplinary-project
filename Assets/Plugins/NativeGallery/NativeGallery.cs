@@ -439,6 +439,7 @@ public static class NativeGallery
 				Debug.LogWarning( "'filename' doesn't have an extension, this might result in unexpected behaviour!" );
 
 			string path = GetTemporarySavePath( filename );
+			Debug.LogError("path: " + path);
 #if UNITY_EDITOR
 			Debug.Log( "SaveToGallery called successfully in the Editor" );
 #else
@@ -520,10 +521,10 @@ public static class NativeGallery
 #endif
 	}
 
-	private static string GetTemporarySavePath( string filename )
+	private static string GetTemporarySavePath(string filename)
 	{
-		string saveDir = Path.Combine( Application.persistentDataPath, "NGallery" );
-		Directory.CreateDirectory( saveDir );
+		string saveDir = Path.Combine(Application.persistentDataPath, "NGallery");
+		Directory.CreateDirectory(saveDir);
 
 #if !UNITY_EDITOR && UNITY_IOS
 		// Ensure a unique temporary filename on iOS:
@@ -546,7 +547,7 @@ public static class NativeGallery
 
 		return path;
 #else
-		return Path.Combine( saveDir, filename );
+		return Path.Combine(saveDir, filename);
 #endif
 	}
 

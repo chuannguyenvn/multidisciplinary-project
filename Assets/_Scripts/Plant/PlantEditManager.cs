@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.XR;
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
 
 public class PlantEditManager : MonoBehaviour
 {
+    [Header("Plant Name")]
     [SerializeField]
     private TMP_InputField _name = null;
     [SerializeField]
     private Image _imgInput = null;
+    [Header("Change Waterring Rules")]
     [SerializeField]
     private GameObject _panelChangeRules = null;
     [SerializeField]
@@ -17,7 +22,12 @@ public class PlantEditManager : MonoBehaviour
     [Space]
     [SerializeField]
     private Image _imgPlant = null;
+    [Space]
+    [Header("XR")]
+    [SerializeField]
+    private Button _btn = null;
 
+    private Texture2D _texture = null;
     private void Start()
     {
         _imgInput.enabled = false;
@@ -35,7 +45,7 @@ public class PlantEditManager : MonoBehaviour
     }
     public void OnClickSaveRecog()
     {
-
+        SaveImage();
     }
     public void OnClickRetakeBtn()
     {
@@ -73,14 +83,20 @@ public class PlantEditManager : MonoBehaviour
                     Debug.Log("Couldn't load texture from " + path);
                     return;
                 }
+                _texture = texture;
                 _imgPlant.sprite = Utility.ConvertToSprite(texture);
-
-                // If a procedural texture is not destroyed manually, 
-                // it will only be freed after a scene change
-                //Destroy(texture, 5f);
             }
         });
 
         Debug.Log("Permission result: " + permission);
     }
+    public void SaveImage()
+    {
+        Debug.LogError("save image");
+
+        NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(_texture, "GalleryTest", "quangbao.png", (success, path) => Debug.Log("Media save result: " + success + " " + path));
+
+        Debug.LogError("Permission result: " + permission);
+    }
+    
 }

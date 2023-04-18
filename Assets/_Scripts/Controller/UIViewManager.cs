@@ -180,8 +180,8 @@ public class UIViewManager : MonoBehaviour
     //        {
     //            Debug.LogError("run");
     //            // Take a screenshot and save it to Gallery/Photos
-    //            //StartCoroutine(TakeScreenshotAndSave());
-    //            PickImage(1024);
+    //            StartCoroutine(TakeScreenshotAndSave());
+    //            //PickImage(1024);
     //        }
     //        else
     //        {
@@ -195,7 +195,7 @@ public class UIViewManager : MonoBehaviour
     //                // Pick a PNG image from Gallery/Photos
     //                // If the selected image's width and/or height is greater than 512px, down-scale the image
     //                //PickImage(512);
-    //                PickImageOrVideo();
+    //                PickImage(-1);
     //            }
     //            else
     //            {

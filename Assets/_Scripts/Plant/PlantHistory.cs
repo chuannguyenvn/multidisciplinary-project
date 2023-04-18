@@ -22,7 +22,9 @@ public class PlantHistory : Singleton<PlantHistory>
     [SerializeField] private Sprite lightSprite;
     [SerializeField] private Sprite temperatureSprite;
     [SerializeField] private Sprite humiditySprite;
-
+    [Space]
+    [SerializeField]
+    private UIViewManager _uiViewManager = null;
     private void Start()
     {
         foreach (var barUnit in BarUnits)
@@ -50,7 +52,7 @@ public class PlantHistory : Singleton<PlantHistory>
     }
     private void HistoryTypeChangedHandler(Define.HistoryType historyType)
     {
-        Debug.LogError("chay cai nay");
+        //Debug.LogError("chay cai nay");
         switch (historyType)
         {
             case Define.HistoryType.Light:
@@ -66,5 +68,10 @@ public class PlantHistory : Singleton<PlantHistory>
                 icon.sprite = humiditySprite;
                 break;
         }
+    }
+    public void OnClickBackBtn()
+    {
+        //back to view plant info, truyen them param la data cua cay hien tai
+        _uiViewManager.OnClickShowViewPlantInfor();
     }
 }
