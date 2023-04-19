@@ -15,6 +15,7 @@ public class PlantListView : MonoBehaviour
     public void Init()
     {
         _prefabPlantItem.gameObject.SetActive(false);
+        Debug.LogError("check: " + PlantManager.Instance.DctPlantData.Count);
         foreach (var plant in PlantManager.Instance.DctPlantData)
         {
             var item = Utility.InstantiateObject<PlantListItemView>(_prefabPlantItem, _content.transform);

@@ -30,7 +30,7 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
                 {
                     foreach (var plantData in response.PlantInformations)
                     {
-                        //Debug.LogError(string.Format("Id: {0}, name: {1}", plantData.Id, plantData.Name));
+                        Debug.LogError(string.Format("Id: {0}, name: {1}", plantData.Id, plantData.Name));
                         //PlantManager.Instance.ListPlantName.Add(plantData.Id.ToString());
                         PlantDataController dataController = new PlantDataController();
                         dataController.Init(plantData.Id, plantData.Name, plantData.CreatedDate, plantData.RecognizerCode);
@@ -58,7 +58,7 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
                     PlayerPrefs.SetString(Define.BearerKey, bearerKey);
                     IsCorrect = true;
                     Debug.Log("Login successfully with bearer key: " + bearerKey);
-                    RequestGetAllDataPlants();
+                    //RequestGetAllDataPlants();
                     SceneManager.Instance.ChangeScene(Define.SceneName.Main.ToString(), null);
                 }
                 else

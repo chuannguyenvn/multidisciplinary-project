@@ -41,6 +41,7 @@ public class UIViewManager : MonoBehaviour
     }
     private void Start()
     {
+        StartCoroutine(ResourceManager.Instance.RequestGetAllDataPlants());
         _plantEditManager.Init();
         _plantHistory.Init();
         _plantListView.Init();
