@@ -3,15 +3,19 @@ using UnityEngine;
 
 public class PlantDataController : MonoBehaviour
 {
-    private int Id;
-    private string Name;
-    private DateTime CreatedDate;
-    private string RecognizerCode;
+    [HideInInspector]
+    public int Id;
+    [HideInInspector]
+    public string PlantName;
+    [HideInInspector]
+    public DateTime CreatedDate;
+    [HideInInspector]
+    public string RecognizerCode;
 
     public void Init(int id, string name, DateTime date, string code)
     {
         Id = id;
-        Name = name;
+        PlantName = name;
         CreatedDate = date;
         RecognizerCode = code;
     }

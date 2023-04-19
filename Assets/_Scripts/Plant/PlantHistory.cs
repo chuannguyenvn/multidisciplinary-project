@@ -25,16 +25,17 @@ public class PlantHistory : Singleton<PlantHistory>
     [Space]
     [SerializeField]
     private UIViewManager _uiViewManager = null;
-    private void Start()
+    public void Init()
     {
         foreach (var barUnit in BarUnits)
         {
+            barUnit.Init();
             barUnit.SetPercentage(Random.value);
             HistoryTypeChanged += barUnit.HistoryChangedHandler;
         }
 
         HistoryTypeChanged += HistoryTypeChangedHandler;
-        
+
         HistoryTypeChanged?.Invoke(HistoryType);
     }
 

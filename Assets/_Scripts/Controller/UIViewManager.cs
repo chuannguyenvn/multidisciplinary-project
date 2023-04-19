@@ -6,15 +6,20 @@ using TMPro;
 public class UIViewManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _panelHistory = null;
-    [SerializeField]
     private GameObject _topMenu = null;
     [SerializeField]
     private TMP_InputField _inputName = null;
+    [Space]
+    [Header("View")]
     [SerializeField]
-    private TMP_InputField _inputID = null;
+    private PlantListView _plantListView = null;
+    [SerializeField]
+    private PlantHistory _plantHistory = null;
+    [SerializeField]
+    private PlantEditManager _plantEditManager = null;
 
     public Dictionary<string, UIView> DictUIView = new Dictionary<string, UIView>();
+
     private List<string> _lstShownView;
     public List<string> LstShownView
     {
@@ -30,17 +35,15 @@ public class UIViewManager : MonoBehaviour
         get => _inputName.text;
         set => _inputName.text = value;
     }
-    public string NewPlantID
-    {
-        get => _inputID.text;
-        set => _inputID.text = value;
-    }
     private void Awake()
     {
         Initialize();
     }
     private void Start()
     {
+        _plantEditManager.Init();
+        _plantHistory.Init();
+        _plantListView.Init();
         OnClickShowViewListPlant();
         var param = SceneManager.Instance.CurrentParam;
         if (param != null)
@@ -95,7 +98,6 @@ public class UIViewManager : MonoBehaviour
                 pair.Value.gameObject.SetActive(true);
             else pair.Value.gameObject.SetActive(false);
         }
-        NewPlantID = NewPlantName = "";
         LstShownView.Add(Define.ViewName.Account.ToString());
     }
     public void OnClickShowViewHistory()
@@ -147,7 +149,6 @@ public class UIViewManager : MonoBehaviour
                 pair.Value.gameObject.SetActive(true);
             else pair.Value.gameObject.SetActive(false);
         }
-        NewPlantID = NewPlantName = "";
         LstShownView.Add(Define.ViewName.PlantInfor.ToString());
     }
     public void OnClickBackToListPlant()

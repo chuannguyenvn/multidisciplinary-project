@@ -22,13 +22,9 @@ public class PlantEditManager : MonoBehaviour
     [Space]
     [SerializeField]
     private Image _imgPlant = null;
-    [Space]
-    [Header("XR")]
-    [SerializeField]
-    private Button _btn = null;
 
     private Texture2D _texture = null;
-    private void Start()
+    public void Init()
     {
         _imgInput.enabled = false;
         _name.interactable = false;

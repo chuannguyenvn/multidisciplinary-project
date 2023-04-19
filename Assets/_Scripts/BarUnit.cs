@@ -17,7 +17,7 @@ public class BarUnit : MonoBehaviour
     private float _minData;
     private float _maxData;
     
-    private void Awake()
+    public void Init()
     {
         frontImage = frontImageRectTransform.GetComponent<Image>();
         backImage = backImageRectTransform.GetComponent<Image>();

@@ -12,31 +12,14 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
 {
     // @formatter:off
     
-    [Header("Data")]
+    //[Header("Data")]
     //public PlantDataController PlantDataController;
 
     public string bearerKey = "";
-    private IEnumerator Start()
+    public bool IsCorrect = false;
+    
+    public IEnumerator RequestGetAllDataPlants()
     {
-        yield return RequestCreator.SendRequest<AuthenticationResponse>(
-            endpoint: "dadn.azurewebsites.net/authentication/login",
-            requestType: RequestCreator.Type.POST,
-            bearerKey: "",
-            objectToSend: new AuthenticationRequest() { Username = "Chuan", Password = "chuan123" },
-            callback: (success, response) =>
-            {
-                if (success)
-                {
-                    bearerKey = response.Token;
-                    Debug.Log("Login successfully with bearer key: " + bearerKey);
-                }
-                else
-                {
-                    Debug.Log("Login failed.");
-                }
-            });
-
-        //get all plants data
         yield return RequestCreator.SendRequest<GetPlantResponse>(
             endpoint: "dadn.azurewebsites.net/plantmanagement/get",
             requestType: RequestCreator.Type.GET,
@@ -59,37 +42,66 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
                     Debug.LogError("failed to get all plants data");
                 }
             });
-
-        //yield return RequestCreator.SendRequest(endpoint: "dadn.azurewebsites.net/plantmanagement/add",
-        //requestType: RequestCreator.Type.POST,
-        //bearerKey: bearerKey,
-        //objectToSend: new AddPlantRequest() { Name = "Cây cute", Photo = "123123" },
-        //callback: success =>
-        //{
-        //    if (success) Debug.Log("Added a new plant.");
-        //    else Debug.Log("Adding plant failed.");
-        //});
-
-        //yield return RequestCreator.SendRequest<PlantDataResponse>(
-        //    endpoint: "dadn.azurewebsites.net/plantdata/1/latest",
-        //    requestType: RequestCreator.Type.GET,
-        //    bearerKey: bearerKey,
-        //    callback: (success, response) =>
-        //    {
-        //        if (success)
-        //        {
-        //            foreach (var point in response.PlantDataPoints)
-        //            {
-        //                Debug.Log(point.Timestamp + ": " + point.LightValue);
-        //            }
-        //        }
-        //        else
-        //        {
-        //            Debug.Log("Failed to get plant's data.");
-        //        }
-        //    });
+    }
+    public IEnumerator RequestLogin(string username, string password)
+    {
+        yield return RequestCreator.SendRequest<AuthenticationResponse>(
+            endpoint: "dadn.azurewebsites.net/authentication/login",
+            requestType: RequestCreator.Type.POST,
+            bearerKey: "",
+            objectToSend: new AuthenticationRequest() { Username = "Chuan", Password = "chuan123" },
+            callback: (success, response) =>
+            {
+                if (success)
+                {
+                    bearerKey = response.Token;
+                    PlayerPrefs.SetString(Define.BearerKey, bearerKey);
+                    IsCorrect = true;
+                    Debug.Log("Login successfully with bearer key: " + bearerKey);
+                    RequestGetAllDataPlants();
+                    SceneManager.Instance.ChangeScene(Define.SceneName.Main.ToString(), null);
+                }
+                else
+                {
+                    Debug.Log("Login failed.");
+                }
+            });
     }
 
+    public IEnumerator RequestAddNewPlant(string name)
+    {
+        yield return RequestCreator.SendRequest(
+            endpoint: "dadn.azurewebsites.net/plantmanagement/add",
+            requestType: RequestCreator.Type.POST,
+            bearerKey: bearerKey,
+            objectToSend: new AddPlantRequest() { Name = name, Photo = "photo" },
+            callback: success =>
+            {
+                if (success) Debug.Log("Added a new plant.");
+                else Debug.Log("Adding plant failed.");
+            });
+    }
+    public IEnumerator RequestGetLatestData()
+    {
+        yield return RequestCreator.SendRequest<PlantDataResponse>(
+            endpoint: "dadn.azurewebsites.net/plantdata/1/latest",
+            requestType: RequestCreator.Type.GET,
+            bearerKey: bearerKey,
+            callback: (success, response) =>
+            {
+                if (success)
+                {
+                    foreach (var point in response.PlantDataPoints)
+                    {
+                        Debug.Log(point.Timestamp + ": " + point.LightValue);
+                    }
+                }
+                else
+                {
+                    Debug.Log("Failed to get plant's data.");
+                }
+            });
+    }
     public Sprite GetImportImage(string id)
     {
         if (string.IsNullOrEmpty(id))
