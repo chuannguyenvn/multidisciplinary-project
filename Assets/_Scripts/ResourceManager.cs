@@ -31,10 +31,12 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
                     foreach (var plantData in response.PlantInformations)
                     {
                         Debug.LogError(string.Format("Id: {0}, name: {1}", plantData.Id, plantData.Name));
-                        //PlantManager.Instance.ListPlantName.Add(plantData.Id.ToString());
-                        PlantDataController dataController = new PlantDataController();
-                        dataController.Init(plantData.Id, plantData.Name, plantData.CreatedDate, plantData.RecognizerCode);
-                        PlantManager.Instance.DctPlantData.Add(plantData.Id, dataController);
+                        if (!PlantManager.Instance.DctPlantData.ContainsKey(plantData.Id))
+                        {
+                            PlantDataController dataController = new PlantDataController();
+                            dataController.Init(plantData.Id, plantData.Name, plantData.CreatedDate, plantData.RecognizerCode);
+                            PlantManager.Instance.DctPlantData.Add(plantData.Id, dataController);
+                        }
                     }
                 }
                 else
@@ -49,7 +51,7 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
             endpoint: "dadn.azurewebsites.net/authentication/login",
             requestType: RequestCreator.Type.POST,
             bearerKey: "",
-            objectToSend: new AuthenticationRequest() { Username = "Chuan", Password = "chuan123" },
+            objectToSend: new AuthenticationRequest() { Username = username, Password = password },
             callback: (success, response) =>
             {
                 if (success)
@@ -58,7 +60,6 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
                     PlayerPrefs.SetString(Define.BearerKey, bearerKey);
                     IsCorrect = true;
                     Debug.Log("Login successfully with bearer key: " + bearerKey);
-                    //RequestGetAllDataPlants();
                     SceneManager.Instance.ChangeScene(Define.SceneName.Main.ToString(), null);
                 }
                 else
@@ -77,14 +78,30 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
             objectToSend: new AddPlantRequest() { Name = name, Photo = "photo" },
             callback: success =>
             {
-                if (success) Debug.Log("Added a new plant.");
+                if (success)
+                {
+                    Debug.Log("Added a new plant.");
+                    StartCoroutine(RequestGetAllDataPlants());
+                }
                 else Debug.Log("Adding plant failed.");
             });
     }
-    public IEnumerator RequestGetLatestData()
+    public IEnumerator RequestDeletePlant(int id)
+    {
+        yield return RequestCreator.SendRequest(
+            endpoint: "dadn.azurewebsites.net/plantmanagement/" + id + "/remove",
+            requestType: RequestCreator.Type.GET,
+            bearerKey: bearerKey,
+            callback: success =>
+            {
+                if (success) Debug.Log("deleted a plant with id: " + id);
+                else Debug.Log("delete failed.");
+            });
+    }
+    public IEnumerator RequestGetLatestData(int id)
     {
         yield return RequestCreator.SendRequest<PlantDataResponse>(
-            endpoint: "dadn.azurewebsites.net/plantdata/1/latest",
+            endpoint: "dadn.azurewebsites.net/plantdata/" + id + "/latest",
             requestType: RequestCreator.Type.GET,
             bearerKey: bearerKey,
             callback: (success, response) =>
@@ -93,7 +110,20 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
                 {
                     foreach (var point in response.PlantDataPoints)
                     {
-                        Debug.Log(point.Timestamp + ": " + point.LightValue);
+                        Debug.LogError(point.Timestamp + ": " + point.LightValue);
+                        if (!PlantManager.Instance.DctPlantData.ContainsKey(id))
+                        {
+                            Debug.LogError("loi ko co id");
+                        }
+                        else
+                        {
+                            Debug.LogError("go with id: " + id);
+                            PlantManager.Instance.DctPlantData[id].Timestamp = point.Timestamp;
+                            PlantManager.Instance.DctPlantData[id].LightValue = point.LightValue;
+                            PlantManager.Instance.DctPlantData[id].TemperatureValue = point.TemperatureValue;
+                            PlantManager.Instance.DctPlantData[id].MoistureValue = point.MoistureValue;
+
+                        }
                     }
                 }
                 else
@@ -102,6 +132,28 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
                 }
             });
     }
+
+    public IEnumerator RequestChangeWaterRules(int id, string newRules, string name)
+    {
+        yield return RequestCreator.SendRequest(
+            endpoint: "dadn.azurewebsites.net/plantmanagement/" + id + "/edit",
+            requestType: RequestCreator.Type.POST,
+            bearerKey: bearerKey,
+            objectToSend: new EditPlantRequest() { NewWateringRule = newRules, NewName = name, NewPhoto = ""},
+            callback: success =>
+            {
+                if (success)
+                {
+                    Debug.LogError("chang water rules: " + id + " " + newRules);
+                }
+                else
+                {
+                    Debug.Log("Failed to change water rules.");
+                }
+            }
+            );
+    }
+
     public Sprite GetImportImage(string id)
     {
         if (string.IsNullOrEmpty(id))

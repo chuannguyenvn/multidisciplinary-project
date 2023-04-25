@@ -11,6 +11,14 @@ public class PlantDataController : MonoBehaviour
     public DateTime CreatedDate;
     [HideInInspector]
     public string RecognizerCode;
+    [HideInInspector]
+    public DateTime Timestamp;
+    [HideInInspector]
+    public double LightValue;
+    [HideInInspector]
+    public double TemperatureValue;
+    [HideInInspector]
+    public double MoistureValue;
 
     public void Init(int id, string name, DateTime date, string code)
     {

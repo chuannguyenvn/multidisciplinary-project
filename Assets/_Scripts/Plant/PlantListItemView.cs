@@ -20,17 +20,36 @@ public class PlantListItemView : MonoBehaviour
     [SerializeField]
     private UIViewManager _uiViewManager = null;
 
-    public void SetPlantItem(string name, string id)
+    private int _plantID;
+
+    public int PlantID
+    {
+        get => _plantID;
+        set => _plantID = value;
+    }
+
+    public void SetPlantData(int id, string name, string imageID, double light, double temp, double moisture)
     {
         //PlantManager.Instance.PlantDataControllersByName[name].LightValueChanged += LightStamp.OnSetData;
         //PlantManager.Instance.PlantDataControllersByName[name].TemperatureValueChanged += TempStamp.OnSetData;
         //PlantManager.Instance.PlantDataControllersByName[name].MoistureValueChanged += MoistureStamp.OnSetData;
+        _plantID = id;
         _nameText.text = name;
-        _img.sprite = ResourceManager.Instance.GetImportImage(id);
+        _img.sprite = ResourceManager.Instance.GetImportImage(imageID);
+        LightStamp.OnSetData(light.ToString());
+        TempStamp.OnSetData(temp.ToString());
+        MoistureStamp.OnSetData(moisture.ToString());
+    }
+    public void OnInstantiateData(int id, string name, string imageID)
+    {
+        _plantID = id;
+        _nameText.text = name;
+        _img.sprite = ResourceManager.Instance.GetImportImage(imageID);
     }
     
     public void OnClickShowPlantInfo()
     {
+        PlantManager.Instance.CurrentPlantItem = this;
         _uiViewManager.OnShowPlantInfoPanel();
     }
 }

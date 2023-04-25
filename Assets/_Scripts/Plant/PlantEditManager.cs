@@ -17,6 +17,9 @@ public class PlantEditManager : MonoBehaviour
     [Header("Change Waterring Rules")]
     [SerializeField]
     private GameObject _panelChangeRules = null;
+    [Header("Remove")]
+    [SerializeField]
+    private GameObject _panelRemove = null;
     [SerializeField]
     private TMP_InputField _newRules = null;
     [Space]
@@ -60,10 +63,32 @@ public class PlantEditManager : MonoBehaviour
     {
 
     }
-    public void OnClickConfirmBtn()
+    public void OnClickConfirmChangeRulesBtn()
     {
         _panelChangeRules.SetActive(false);
         //gui text len server
+        StartCoroutine(OnClickSendRequestChangeRules());
+    }
+    private IEnumerator OnClickSendRequestChangeRules()
+    {
+        int curID = PlantManager.Instance.CurrentPlantItem.PlantID;
+        Debug.LogError("cur Id: " + curID);
+        yield return ResourceManager.Instance.RequestChangeWaterRules(curID, _newRules.text, PlantManager.Instance.DctPlantData[curID].PlantName);
+        //yield return ResourceManager.Instance.RequestGetLatestData(PlantManager.Instance.CurrentPlantItem.PlantID);
+        _panelChangeRules.SetActive(false);
+    }
+    public void OnClickCancelChangeRulesBtn()
+    {
+        _panelChangeRules.SetActive(false);
+    }
+    public void OnClickConfirmRemoveBtn()
+    {
+        _panelRemove.SetActive(false);
+        //gui request len server
+    }
+    public void OnClickCancelRemoveBtn()
+    {
+        _panelRemove.SetActive(false);
     }
     public void PickImage()
     {

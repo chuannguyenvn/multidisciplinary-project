@@ -9,6 +9,8 @@ public class UIViewManager : MonoBehaviour
     private GameObject _topMenu = null;
     [SerializeField]
     private TMP_InputField _inputName = null;
+    [SerializeField]
+    private GameObject _waitingScene = null;
     [Space]
     [Header("View")]
     [SerializeField]
@@ -39,9 +41,14 @@ public class UIViewManager : MonoBehaviour
     {
         Initialize();
     }
-    private void Start()
+    private IEnumerator Start()
     {
-        StartCoroutine(ResourceManager.Instance.RequestGetAllDataPlants());
+        yield return ResourceManager.Instance.RequestGetAllDataPlants();
+        //yield return ResourceManager.Instance.RequestGetLatestData();
+        foreach (var item in PlantManager.Instance.DctPlantData)
+        {
+            yield return ResourceManager.Instance.RequestGetLatestData(item.Key);
+        }
         _plantEditManager.Init();
         _plantHistory.Init();
         _plantListView.Init();
@@ -75,6 +82,10 @@ public class UIViewManager : MonoBehaviour
             else Debug.LogError("trung");
         }
         //Debug.LogError("count of dct: " + DictUIView.Count);
+    }
+    public void OnShowWaitingScene(bool set)
+    {
+        _waitingScene.SetActive(set);
     }
     public void OnClickShowViewListPlant()
     {

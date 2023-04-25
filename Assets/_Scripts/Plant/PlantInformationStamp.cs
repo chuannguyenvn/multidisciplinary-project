@@ -9,15 +9,11 @@ public class PlantInformationStamp : MonoBehaviour
 {
     public string DataType;
     [Space]
-    [SerializeField] private Image _icon;
-    [SerializeField] private Image _background;
     [SerializeField] private TMP_Text _informationText;
-    
     
     public void OnSetData(string data)
     {
         _informationText.text = data;
-        Debug.Log("aaaaaaaaaaaaaa");
     }
     public string OnGetData()
     {

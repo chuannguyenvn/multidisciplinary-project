@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class PlantManager : PersistentSingleton<PlantManager>
 {
-    //private List<string> _plantNames = new List<string>();
     public Dictionary<int, PlantDataController> DctPlantData = new Dictionary<int, PlantDataController>();
 
-    //public List<string> ListPlantName
-    //{
-    //    get => _plantNames;
-    //    set => _plantNames = value;
-    //}
+    private PlantListItemView _currentPlantItem;
+
+    public PlantListItemView CurrentPlantItem
+    {
+        get => _currentPlantItem;
+        set => _currentPlantItem = value;
+    }
 
     public void InstantiateDataController(string plantName)
     {
