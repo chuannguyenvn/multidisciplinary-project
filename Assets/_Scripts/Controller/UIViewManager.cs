@@ -19,6 +19,8 @@ public class UIViewManager : MonoBehaviour
     private PlantHistory _plantHistory = null;
     [SerializeField]
     private PlantEditManager _plantEditManager = null;
+    [SerializeField]
+    private PlantInfoManager _plantInfoManager = null;
 
     public Dictionary<string, UIView> DictUIView = new Dictionary<string, UIView>();
 
@@ -162,6 +164,12 @@ public class UIViewManager : MonoBehaviour
             else pair.Value.gameObject.SetActive(false);
         }
         LstShownView.Add(Define.ViewName.PlantInfor.ToString());
+        //goi plant infor manager lay data plant
+        var curID = PlantManager.Instance.CurrentPlantItem.PlantID;
+        var light = PlantManager.Instance.DctPlantData[curID].LightValue.ToString();
+        var humid = PlantManager.Instance.DctPlantData[curID].MoistureValue.ToString();
+        var temp = PlantManager.Instance.DctPlantData[curID].TemperatureValue.ToString();
+        _plantInfoManager.OnSetPlantData(light, humid, temp);
     }
     public void OnClickBackToListPlant()
     {
@@ -172,7 +180,6 @@ public class UIViewManager : MonoBehaviour
         //lay infor cua cay dc target
         //lay = plantlistviewitem roi reference sang inforStamp
         //show panel history
-
     }
 
     #endregion

@@ -21,5 +21,6 @@ public class LoginManager : Singleton<LoginManager>
     public void OnClickLogin()
     {
         StartCoroutine(ResourceManager.Instance.RequestLogin(_accountField.text, _passwordField.text));
+        //SceneManager.Instance.ChangeScene(Define.SceneName.Main.ToString(), null);
     }
 }

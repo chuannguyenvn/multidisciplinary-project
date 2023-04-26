@@ -61,12 +61,10 @@ public class PlantEditManager : MonoBehaviour
     }
     public void OnClickRemoveBtn()
     {
-
+        _panelRemove.SetActive(true);
     }
     public void OnClickConfirmChangeRulesBtn()
     {
-        _panelChangeRules.SetActive(false);
-        //gui text len server
         StartCoroutine(OnClickSendRequestChangeRules());
     }
     private IEnumerator OnClickSendRequestChangeRules()
@@ -74,8 +72,9 @@ public class PlantEditManager : MonoBehaviour
         int curID = PlantManager.Instance.CurrentPlantItem.PlantID;
         Debug.LogError("cur Id: " + curID);
         yield return ResourceManager.Instance.RequestChangeWaterRules(curID, _newRules.text, PlantManager.Instance.DctPlantData[curID].PlantName);
-        //yield return ResourceManager.Instance.RequestGetLatestData(PlantManager.Instance.CurrentPlantItem.PlantID);
-        _panelChangeRules.SetActive(false);
+        Debug.LogError("check CanCHangeRules " + ResourceManager.Instance.CanChangeRules);
+        if (ResourceManager.Instance.CanChangeRules)
+            _panelChangeRules.SetActive(false);
     }
     public void OnClickCancelChangeRulesBtn()
     {
@@ -83,8 +82,15 @@ public class PlantEditManager : MonoBehaviour
     }
     public void OnClickConfirmRemoveBtn()
     {
-        _panelRemove.SetActive(false);
         //gui request len server
+        StartCoroutine(OnClickSendRequestRemovePlant(PlantManager.Instance.CurrentPlantItem.PlantID));
+    }
+    private IEnumerator OnClickSendRequestRemovePlant(int id)
+    {
+        yield return ResourceManager.Instance.RequestDeletePlant(id);
+        //if (ResourceManager.Instance.CanRemove)
+            _panelRemove.SetActive(false);
+
     }
     public void OnClickCancelRemoveBtn()
     {

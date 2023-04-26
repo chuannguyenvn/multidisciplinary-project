@@ -16,7 +16,14 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
     //public PlantDataController PlantDataController;
 
     public string bearerKey = "";
-    public bool IsCorrect = false;
+    [HideInInspector]
+    public bool CanLogin = false;
+    [HideInInspector]
+    public bool CanRemove = false;
+    [HideInInspector]
+    public bool CanChangeRules = false;
+    [HideInInspector]
+    public bool CanWater = false;
     
     public IEnumerator RequestGetAllDataPlants()
     {
@@ -58,7 +65,7 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
                 {
                     bearerKey = response.Token;
                     PlayerPrefs.SetString(Define.BearerKey, bearerKey);
-                    IsCorrect = true;
+                    CanLogin = true;
                     Debug.Log("Login successfully with bearer key: " + bearerKey);
                     SceneManager.Instance.ChangeScene(Define.SceneName.Main.ToString(), null);
                 }
@@ -94,7 +101,12 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
             bearerKey: bearerKey,
             callback: success =>
             {
-                if (success) Debug.Log("deleted a plant with id: " + id);
+                if (success)
+                {
+                    Debug.Log("deleted a plant with id: " + id);
+                    CanRemove = true;
+
+                }
                 else Debug.Log("delete failed.");
             });
     }
@@ -145,6 +157,27 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
                 if (success)
                 {
                     Debug.LogError("chang water rules: " + id + " " + newRules);
+                    CanChangeRules = true;
+                }
+                else
+                {
+                    Debug.Log("Failed to change water rules.");
+                }
+            }
+            );
+    }
+    public IEnumerator RequestWaterNow(int id)
+    {
+        yield return RequestCreator.SendRequest(
+            endpoint: "dadn.azurewebsites.net/plantmanagement/" + id + "/water",
+            requestType: RequestCreator.Type.GET,
+            bearerKey: bearerKey,
+            callback: success =>
+            {
+                if (success)
+                {
+                    Debug.LogError("water now " + id);
+                    CanWater = true;
                 }
                 else
                 {
