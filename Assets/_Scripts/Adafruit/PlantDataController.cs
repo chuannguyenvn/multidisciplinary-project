@@ -12,6 +12,10 @@ public class PlantDataController : MonoBehaviour
     [HideInInspector]
     public string RecognizerCode;
     [HideInInspector]
+    public string WateringRuleRepeats;
+    [HideInInspector]
+    public string WateringRuleMetrics;
+    [HideInInspector]
     public DateTime Timestamp;
     [HideInInspector]
     public double LightValue;
@@ -20,11 +24,13 @@ public class PlantDataController : MonoBehaviour
     [HideInInspector]
     public double MoistureValue;
 
-    public void Init(int id, string name, DateTime date, string code)
+    public void Init(int id, string name, DateTime date, string code, string repeats, string metric)
     {
         Id = id;
         PlantName = name;
         CreatedDate = date;
         RecognizerCode = code;
+        WateringRuleRepeats = repeats;
+        WateringRuleMetrics = metric;
     }
 }

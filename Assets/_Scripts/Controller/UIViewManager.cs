@@ -136,6 +136,9 @@ public class UIViewManager : MonoBehaviour
             }
             else pair.Value.gameObject.SetActive(false);
         }
+
+        var curID = PlantManager.Instance.CurrentPlantItem.PlantID;
+        _plantEditManager.OnSetData(PlantManager.Instance.DctPlantData[curID].PlantName);
         //LstShownView.Add(Define.ViewName.History.ToString());
     }
     
@@ -164,12 +167,14 @@ public class UIViewManager : MonoBehaviour
             else pair.Value.gameObject.SetActive(false);
         }
         LstShownView.Add(Define.ViewName.PlantInfor.ToString());
+
         //goi plant infor manager lay data plant
         var curID = PlantManager.Instance.CurrentPlantItem.PlantID;
+        var name = PlantManager.Instance.DctPlantData[curID].PlantName;
         var light = PlantManager.Instance.DctPlantData[curID].LightValue.ToString();
         var humid = PlantManager.Instance.DctPlantData[curID].MoistureValue.ToString();
         var temp = PlantManager.Instance.DctPlantData[curID].TemperatureValue.ToString();
-        _plantInfoManager.OnSetPlantData(light, humid, temp);
+        _plantInfoManager.OnSetPlantData(name, light, humid, temp);
     }
     public void OnClickBackToListPlant()
     {

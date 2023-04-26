@@ -36,7 +36,7 @@ public class TestApi : MonoBehaviour
         yield return RequestCreator.SendRequest(endpoint: "dadn.azurewebsites.net/plantmanagement/add",
             requestType: RequestCreator.Type.POST,
             bearerKey: bearerKey,
-            objectToSend: new AddPlantRequest() { Name = "Cây cute", Photo = "123123" },
+            objectToSend: new AddPlantRequest() { Name = "Cây cute" },
             callback: success =>
             {
                 if (success) Debug.Log("Added a new plant.");

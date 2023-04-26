@@ -288,7 +288,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1296854210}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -688,7 +688,7 @@ GameObject:
   - component: {fileID: 177824638}
   - component: {fileID: 177824639}
   m_Layer: 5
-  m_Name: GroupBtnLeft
+  m_Name: GroupBtnRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -709,8 +709,8 @@ RectTransform:
   - {fileID: 1223713302}
   - {fileID: 46408852}
   - {fileID: 571101493}
-  - {fileID: 757362595}
   - {fileID: 348233875}
+  - {fileID: 757362595}
   m_Father: {fileID: 866801716}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1477,7 +1477,7 @@ GameObject:
   - component: {fileID: 348233877}
   - component: {fileID: 348233876}
   m_Layer: 5
-  m_Name: Button_Export
+  m_Name: Button_RulesMetric
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1498,11 +1498,11 @@ RectTransform:
   - {fileID: 889604013}
   - {fileID: 124613190}
   m_Father: {fileID: 177824638}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 276.26056, y: -1231.6462}
+  m_AnchoredPosition: {x: 276.26056, y: -964.6138}
   m_SizeDelta: {x: 552.5211, y: 207.0325}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &348233876
@@ -1551,7 +1551,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 866801718}
         m_TargetAssemblyTypeName: PlantEditManager, Assembly-CSharp
-        m_MethodName: OnClickExportLog
+        m_MethodName: OnClickChangeRulesMetricBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2529,7 +2529,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &524405631
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2551,7 +2551,7 @@ RectTransform:
   - {fileID: 858172408}
   - {fileID: 1507789522}
   m_Father: {fileID: 1296854210}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2584,6 +2584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiViewManager: {fileID: 1296854211}
+  _name: {fileID: 1389486956}
   _light: {fileID: 1283223689}
   _humid: {fileID: 775742003}
   _temp: {fileID: 1008134969}
@@ -2638,7 +2639,7 @@ GameObject:
   - component: {fileID: 571101495}
   - component: {fileID: 571101494}
   m_Layer: 5
-  m_Name: Button_ChangeRules
+  m_Name: Button_RulesRepeat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2712,7 +2713,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 866801718}
         m_TargetAssemblyTypeName: PlantEditManager, Assembly-CSharp
-        m_MethodName: OnClickChangeRules
+        m_MethodName: OnClickChangeRulesRepeatBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3339,7 +3340,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Change
 
-    watering rules'
+    repeat rules'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3515,11 +3516,11 @@ RectTransform:
   - {fileID: 880319632}
   - {fileID: 868521597}
   m_Father: {fileID: 177824638}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 276.26056, y: -964.6138}
+  m_AnchoredPosition: {x: 276.26056, y: -1231.6462}
   m_SizeDelta: {x: 552.5211, y: 207.0325}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &757362596
@@ -4528,7 +4529,7 @@ RectTransform:
   - {fileID: 726176249}
   - {fileID: 756489164}
   m_Father: {fileID: 1296854210}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4883,7 +4884,7 @@ RectTransform:
   - {fileID: 1115764134}
   - {fileID: 470418826}
   m_Father: {fileID: 1296854210}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4918,9 +4919,10 @@ MonoBehaviour:
   _name: {fileID: 965430735}
   _imgInput: {fileID: 965430736}
   _panelChangeRules: {fileID: 1115764133}
-  _panelRemove: {fileID: 470418825}
   _newRules: {fileID: 1670663488}
+  _panelRemove: {fileID: 470418825}
   _imgPlant: {fileID: 1271237424}
+  _uiViewManager: {fileID: 1296854211}
 --- !u!1 &868521596
 GameObject:
   m_ObjectHideFlags: 0
@@ -5464,7 +5466,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Export Logs
+  m_text: "Change \nmetric rules"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8160,7 +8162,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1894285868}
   - {fileID: 524405631}
   - {fileID: 1809437761}
   - {fileID: 76269871}
@@ -8168,6 +8169,7 @@ RectTransform:
   - {fileID: 1752505919}
   - {fileID: 852501671}
   - {fileID: 866801716}
+  - {fileID: 1894285868}
   m_Father: {fileID: 260508406}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8194,7 +8196,7 @@ MonoBehaviour:
   _plantListView: {fileID: 7948426794463858339}
   _plantHistory: {fileID: 852501672}
   _plantEditManager: {fileID: 866801718}
-  _plantInfoManager: {fileID: 0}
+  _plantInfoManager: {fileID: 524405633}
 --- !u!1 &1300797313
 GameObject:
   m_ObjectHideFlags: 0
@@ -8802,7 +8804,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7edb976a6849f3c4d80471205421bf2a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ff76924a0c35bb1468b4bd2ea969cb4c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11831,7 +11833,7 @@ RectTransform:
   m_Children:
   - {fileID: 1946378958}
   m_Father: {fileID: 1296854210}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -11988,7 +11990,7 @@ RectTransform:
   m_Children:
   - {fileID: 2093806455}
   m_Father: {fileID: 1296854210}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -12226,7 +12228,7 @@ RectTransform:
   m_Children:
   - {fileID: 1300797314}
   m_Father: {fileID: 1296854210}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -12263,7 +12265,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1894285868
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12279,7 +12281,7 @@ RectTransform:
   - {fileID: 391053550}
   - {fileID: 988902279}
   m_Father: {fileID: 1296854210}
-  m_RootOrder: 0
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -12299,7 +12301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.93773586, b: 0.93773586, a: 1}
+  m_Color: {r: 1, g: 0.93773586, b: 0.93773586, a: 0.5176471}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

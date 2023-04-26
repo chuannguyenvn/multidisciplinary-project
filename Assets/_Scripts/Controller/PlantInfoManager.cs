@@ -8,6 +8,8 @@ public class PlantInfoManager : MonoBehaviour
     [SerializeField]
     private UIViewManager _uiViewManager = null;
     [SerializeField]
+    private TextMeshProUGUI _name = null;
+    [SerializeField]
     private TextMeshProUGUI _light = null;
     [SerializeField]
     private TextMeshProUGUI _humid = null;
@@ -42,8 +44,9 @@ public class PlantInfoManager : MonoBehaviour
     {
         _uiViewManager.OnClickShowViewEdit();
     }
-    public void OnSetPlantData(string light, string humid, string temp)
+    public void OnSetPlantData(string name, string light, string humid, string temp)
     {
+        _name.text = name;
         _temp.text = temp;
         _light.text = light;
         _humid.text = humid;

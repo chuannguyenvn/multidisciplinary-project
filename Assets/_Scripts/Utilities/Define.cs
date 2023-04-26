@@ -48,4 +48,14 @@ public class Define : MonoBehaviour
         Temperature,
         Humidity,
     }
+    public enum RulesType
+    {
+        Repeat = 0,
+        Metric = 1
+    }
+    public enum LoginType
+    {
+        Login = 0,
+        Register = 1
+    }
 }

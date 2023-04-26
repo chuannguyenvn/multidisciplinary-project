@@ -17,16 +17,21 @@ public class PlantEditManager : MonoBehaviour
     [Header("Change Waterring Rules")]
     [SerializeField]
     private GameObject _panelChangeRules = null;
+    [SerializeField]
+    private TMP_InputField _newRules = null;
     [Header("Remove")]
     [SerializeField]
     private GameObject _panelRemove = null;
-    [SerializeField]
-    private TMP_InputField _newRules = null;
     [Space]
     [SerializeField]
     private Image _imgPlant = null;
+    [Space]
+    [SerializeField]
+    private UIViewManager _uiViewManager = null;
 
     private Texture2D _texture = null;
+
+    private Define.RulesType type;
     public void Init()
     {
         _imgInput.enabled = false;
@@ -51,51 +56,92 @@ public class PlantEditManager : MonoBehaviour
         //access to gallery and select picture
         PickImage();
     }
-    public void OnClickChangeRules()
+
+    public void OnClickChangeRulesRepeatBtn()
     {
         _panelChangeRules.SetActive(true);
+        type = Define.RulesType.Repeat;
+        var curID = PlantManager.Instance.CurrentPlantItem.PlantID;
+        _newRules.text = PlantManager.Instance.DctPlantData[curID].WateringRuleRepeats;
     }
-    public void OnClickExportLog()
-    {
 
-    }
-    public void OnClickRemoveBtn()
+    public void OnClickChangeRulesMetricBtn()
     {
-        _panelRemove.SetActive(true);
+        _panelChangeRules.SetActive(true);
+        type = Define.RulesType.Metric;
+        var curID = PlantManager.Instance.CurrentPlantItem.PlantID;
+        _newRules.text = PlantManager.Instance.DctPlantData[curID].WateringRuleMetrics;
     }
+
     public void OnClickConfirmChangeRulesBtn()
     {
         StartCoroutine(OnClickSendRequestChangeRules());
-    }
-    private IEnumerator OnClickSendRequestChangeRules()
-    {
-        int curID = PlantManager.Instance.CurrentPlantItem.PlantID;
-        Debug.LogError("cur Id: " + curID);
-        yield return ResourceManager.Instance.RequestChangeWaterRules(curID, _newRules.text, PlantManager.Instance.DctPlantData[curID].PlantName);
-        Debug.LogError("check CanCHangeRules " + ResourceManager.Instance.CanChangeRules);
-        if (ResourceManager.Instance.CanChangeRules)
-            _panelChangeRules.SetActive(false);
     }
     public void OnClickCancelChangeRulesBtn()
     {
         _panelChangeRules.SetActive(false);
     }
+
+    private IEnumerator OnClickSendRequestChangeRules()
+    {
+        int curID = PlantManager.Instance.CurrentPlantItem.PlantID;
+        Debug.LogError("cur Id: " + curID);
+        if (type == Define.RulesType.Repeat)
+        {
+            var curMetric = PlantManager.Instance.DctPlantData[curID].WateringRuleMetrics;
+            yield return ResourceManager.Instance.RequestChangeWaterRules(curID, _newRules.text, curMetric,
+                PlantManager.Instance.DctPlantData[curID].PlantName);
+        }
+        else
+        {
+            var curRepeat = PlantManager.Instance.DctPlantData[curID].WateringRuleRepeats;
+            yield return ResourceManager.Instance.RequestChangeWaterRules(curID, curRepeat, _newRules.text,
+            PlantManager.Instance.DctPlantData[curID].PlantName);
+        }
+
+        Debug.LogError("check CanCHangeRules " + ResourceManager.Instance.CanChangeRules);
+        if (ResourceManager.Instance.CanChangeRules)
+            _panelChangeRules.SetActive(false);
+    }
+
+    public void OnClickRemoveBtn()
+    {
+        _panelRemove.SetActive(true);
+    }
+
     public void OnClickConfirmRemoveBtn()
     {
         //gui request len server
+        _uiViewManager.OnShowWaitingScene(true);
         StartCoroutine(OnClickSendRequestRemovePlant(PlantManager.Instance.CurrentPlantItem.PlantID));
     }
+
     private IEnumerator OnClickSendRequestRemovePlant(int id)
     {
         yield return ResourceManager.Instance.RequestDeletePlant(id);
-        //if (ResourceManager.Instance.CanRemove)
+        if (!ResourceManager.Instance.CanRemove)
+        {
+            Debug.LogError("can not remove " + id);
+            yield return new WaitForSeconds(2);
+            _uiViewManager.OnShowWaitingScene(false);
             _panelRemove.SetActive(false);
-
+        }
+        else
+        {
+            _panelRemove.SetActive(false);
+        }
     }
+
     public void OnClickCancelRemoveBtn()
     {
         _panelRemove.SetActive(false);
     }
+
+    public void OnSetData(string name)
+    {
+        _name.text = name;
+    }
+
     public void PickImage()
     {
         NativeGallery.Permission permission = NativeGallery.GetImageFromGallery((path) =>

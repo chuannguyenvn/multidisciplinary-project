@@ -1,17 +1,21 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
+using System;
 
-public class GetPlantResponse
+namespace Communications.Responses
 {
-    [JsonProperty("PlantInformations")] public List<GetPlantResponseUnit> PlantInformations { get; set; }
-}
+    public class GetPlantResponse
+    {
+        [JsonProperty("PlantInformations")] public List<GetPlantResponseUnit> PlantInformations { get; set; }
+    }
 
-public class GetPlantResponseUnit
-{
-    [JsonProperty("Id")] public int Id { get; set; }
-    [JsonProperty("Name")] public string Name { get; set; }
-    [JsonProperty("CreatedDate")] public DateTime CreatedDate { get; set; }
-    [JsonProperty("Photo")] public string Photo { get; set; }
-    [JsonProperty("RecognizerCode")] public string RecognizerCode { get; set; }
+    public class GetPlantResponseUnit
+    {
+        [JsonProperty("Id")] public int Id { get; set; }
+        [JsonProperty("Name")] public string Name { get; set; }
+        [JsonProperty("CreatedDate")] public DateTime CreatedDate { get; set; }
+        [JsonProperty("RecognizerCode")] public string RecognizerCode { get; set; }
+        [JsonProperty("WateringRuleRepeats")] public string WateringRuleRepeats { get; set; }
+        [JsonProperty("WateringRuleMetrics")] public string WateringRuleMetrics { get; set; }
+    }
 }
