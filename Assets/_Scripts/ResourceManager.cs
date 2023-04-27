@@ -74,6 +74,7 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
                 }
                 else
                 {
+                    CanLogin = false;
                     Debug.Log("Login failed.");
                 }
             });
@@ -98,6 +99,7 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
                 }
                 else
                 {
+                    CanRegister = false;
                     Debug.Log("Login failed.");
                 }
             });
@@ -134,7 +136,11 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
                     CanRemove = true;
 
                 }
-                else Debug.Log("delete failed.");
+                else
+                {
+                    CanRemove = false;
+                    Debug.Log("delete failed.");
+                }
             });
     }
     public IEnumerator RequestGetLatestData(int id)
@@ -189,6 +195,7 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
                 else
                 {
                     Debug.Log("Failed to change water rules.");
+                    CanChangeRules = false;
                 }
             }
             );
@@ -208,6 +215,7 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
                 }
                 else
                 {
+                    CanWater = false;
                     Debug.Log("Failed to water now.");
                 }
             }

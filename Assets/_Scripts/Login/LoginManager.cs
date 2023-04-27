@@ -25,6 +25,8 @@ public class LoginManager : Singleton<LoginManager>
     private GameObject _panelLoginFail = null;
     [SerializeField]
     private TextMeshProUGUI _text = null;
+    [SerializeField]
+    private GameObject _panelLoading = null;
 
     protected override void Awake()
     {
@@ -37,6 +39,7 @@ public class LoginManager : Singleton<LoginManager>
         _registerPanelButton.gameObject.SetActive(true);
         _panelLoginFail.SetActive(false);
         _cancelButton.gameObject.SetActive(false);
+        _panelLoading.SetActive(false);
     }
     public void OnClickShowPanelLogin()
     {
@@ -61,12 +64,15 @@ public class LoginManager : Singleton<LoginManager>
     public void OnClickLoginButton()
     {
         StartCoroutine(OnLogin());
+        //SceneManager.Instance.ChangeScene(Define.SceneName.Main.ToString(), null);
     }
     private IEnumerator OnLogin()
     {
+        _panelLoading.SetActive(true);
         yield return ResourceManager.Instance.RequestLogin(_accountField.text, _passwordField.text);
         if (!ResourceManager.Instance.CanLogin)
         {
+            _panelLoading.SetActive(false);
             _panelLoginFail.SetActive(true);
             _text.text = "Login Fail!";
             yield return new WaitForSeconds(3);

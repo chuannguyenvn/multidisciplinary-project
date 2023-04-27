@@ -11,6 +11,10 @@ public class UIViewManager : MonoBehaviour
     private TMP_InputField _inputName = null;
     [SerializeField]
     private GameObject _waitingScene = null;
+    [SerializeField]
+    private GameObject _notiPanel = null;
+    [SerializeField]
+    private TextMeshProUGUI _noti = null;
     [Space]
     [Header("View")]
     [SerializeField]
@@ -88,6 +92,11 @@ public class UIViewManager : MonoBehaviour
     public void OnShowWaitingScene(bool set)
     {
         _waitingScene.SetActive(set);
+    }
+    public void OnSetNotiPanel(bool status, string noti)
+    {
+        _noti.text = noti;
+        _notiPanel.SetActive(status);
     }
     public void OnClickShowViewListPlant()
     {

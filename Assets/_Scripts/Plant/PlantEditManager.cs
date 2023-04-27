@@ -28,6 +28,7 @@ public class PlantEditManager : MonoBehaviour
     [Space]
     [SerializeField]
     private UIViewManager _uiViewManager = null;
+    
 
     private Texture2D _texture = null;
 
@@ -46,6 +47,27 @@ public class PlantEditManager : MonoBehaviour
     {
         _name.interactable = false;
         _imgInput.enabled = false;
+        StartCoroutine(OnRequestChangeName());
+    }
+    private IEnumerator OnRequestChangeName()
+    {
+        _uiViewManager.OnShowWaitingScene(true);
+        var curID = PlantManager.Instance.CurrentPlantItem.PlantID;
+        var curMetric = PlantManager.Instance.DctPlantData[curID].WateringRuleMetrics;
+        var curRepeat = PlantManager.Instance.DctPlantData[curID].WateringRuleRepeats;
+        yield return ResourceManager.Instance.RequestChangeWaterRules(curID, curRepeat, curMetric, _name.text);
+        if (!ResourceManager.Instance.CanChangeRules)
+        {
+            //debug cannot change name
+            _uiViewManager.OnSetNotiPanel(true, "Cannot change name");
+            yield return new WaitForSeconds(2);
+            _uiViewManager.OnShowWaitingScene(false);
+            _uiViewManager.OnSetNotiPanel(false, "");
+        }
+        else
+        {
+            _uiViewManager.OnShowWaitingScene(false);
+        }
     }
     public void OnClickSaveRecog()
     {
