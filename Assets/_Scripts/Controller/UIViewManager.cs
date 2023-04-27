@@ -200,7 +200,13 @@ public class UIViewManager : MonoBehaviour
         //lay = plantlistviewitem roi reference sang inforStamp
         //show panel history
     }
-
+    public void HideAllViews()
+    {
+        foreach (var pair in DictUIView)
+        {
+            pair.Value.gameObject.SetActive(false);
+        }
+    }
     #endregion
 
     #region Example Code
@@ -329,6 +335,14 @@ public class UIViewManager : MonoBehaviour
             }, NativeGallery.MediaType.Image | NativeGallery.MediaType.Video, "Select an image or video");
 
             Debug.Log("Permission result: " + permission);
+        }
+    }
+
+    public void OnGenerateButton()
+    {
+        foreach (var item in PlantManager.Instance.DctPlantData)
+        {
+            RecognizerParser.Save(item.Value.RecognizerCode, item.Key.ToString());
         }
     }
     #endregion

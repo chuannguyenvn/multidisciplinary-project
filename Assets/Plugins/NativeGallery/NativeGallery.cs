@@ -523,8 +523,8 @@ public static class NativeGallery
 
 	private static string GetTemporarySavePath(string filename)
 	{
-		string saveDir = Path.Combine(Application.persistentDataPath, "NGallery");
-		Directory.CreateDirectory(saveDir);
+        string saveDir = Path.Combine(Application.persistentDataPath, "NGallery");
+        Directory.CreateDirectory(saveDir);
 
 #if !UNITY_EDITOR && UNITY_IOS
 		// Ensure a unique temporary filename on iOS:
@@ -547,9 +547,10 @@ public static class NativeGallery
 
 		return path;
 #else
-		return Path.Combine(saveDir, filename);
+        return Path.Combine(saveDir, filename);
+        //return Application.persistentDataPath + "/" + filename;
 #endif
-	}
+    }
 
 	private static Permission GetMediaFromGallery( MediaPickCallback callback, MediaType mediaType, string mime, string title )
 	{

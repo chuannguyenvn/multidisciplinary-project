@@ -72,6 +72,7 @@ public class PlantEditManager : MonoBehaviour
             yield return new WaitForSeconds(1);
             _uiViewManager.OnSetNotiPanel(false, "");
             _plantListView.DctPlantItems[curID].OnSetName(_name.text);
+            PlantManager.Instance.DctPlantData[curID].PlantName = _name.text;
         }
     }
     public void OnClickSaveRecog()
@@ -82,6 +83,7 @@ public class PlantEditManager : MonoBehaviour
     {
         //access to gallery and select picture
         PickImage();
+        Debug.LogError("run");
     }
 
     public void OnClickChangeRulesRepeatBtn()
@@ -210,8 +212,8 @@ public class PlantEditManager : MonoBehaviour
     public void SaveImage()
     {
         Debug.LogError("save image");
-
-        NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(_texture, "GalleryTest", "quangbao.png", (success, path) => Debug.Log("Media save result: " + success + " " + path));
+        var curID = PlantManager.Instance.CurrentPlantItem.PlantID;
+        NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(_texture, "PlantGallery", curID + ".png", (success, path) => Debug.Log("Media save result: " + success + " " + path));
 
         Debug.LogError("Permission result: " + permission);
     }

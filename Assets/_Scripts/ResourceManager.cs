@@ -41,8 +41,7 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
                     PlantManager.Instance.DctPlantData.Clear();
                     foreach (var plantData in response.PlantInformations)
                     {
-                        Debug.LogError(string.Format("Id: {0}, name: {1}, repeat {2}, metric {3}", 
-                            plantData.Id, plantData.Name, plantData.WateringRuleRepeats, plantData.WateringRuleMetrics));
+                        Debug.LogError(string.Format("recog code: {0}", plantData.RecognizerCode));
                         if (!PlantManager.Instance.DctPlantData.ContainsKey(plantData.Id))
                         {
                             PlantDataController dataController = new PlantDataController();
@@ -236,6 +235,8 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
             return null;
 
         var sprite = Resources.Load<Sprite>("Sprites/" + id);
+        var ss = Resources.Load<Texture2D>(Application.persistentDataPath + "/" + id);
+        //return Utility.ConvertToSprite(ss);
         return sprite;
     }
 
