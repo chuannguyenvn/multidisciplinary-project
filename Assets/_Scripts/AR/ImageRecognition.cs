@@ -5,12 +5,15 @@ using UnityEngine.XR;
 using UnityEngine.XR.ARSubsystems;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.UI;
+using TMPro;
 
 public class ImageRecognition : MonoBehaviour
 {
     private ARTrackedImageManager _arTrackedImageManager;
     [SerializeField]
     private GameObject _panel = null;
+    //[SerializeField]
+    //private TextMeshProUGUI _text = null;
 
     private void Awake()
     {
@@ -28,6 +31,17 @@ public class ImageRecognition : MonoBehaviour
     public void OnShowPanel(ARTrackedImagesChangedEventArgs args)
     {
         _panel.SetActive(true);
+        //var str = "";
+        //foreach (var trackImage in _arTrackedImageManager.trackables)
+        //{
+        //    Debug.LogError("trackImage name: " + trackImage.referenceImage.name);
+        //    str += trackImage.referenceImage.name;
+        //}
+        //_text.text = str;
+        //foreach (var evt in args.added)
+        //{
+        //    Debug.LogError("evt name: " + evt.referenceImage.name);
+        //}
     }
     //public void OnClickTest()
     //{
