@@ -12,6 +12,14 @@ public class PlantListView : MonoBehaviour
     [SerializeField]
     private UIViewManager _uiViewManager = null;
 
+    private Dictionary<int, PlantListItemView> _dctPlantItems = new Dictionary<int, PlantListItemView>();
+
+    public Dictionary<int, PlantListItemView> DctPlantItems
+    {
+        get => _dctPlantItems;
+        set => _dctPlantItems = value;
+    }
+
     public void Init()
     {
         _prefabPlantItem.gameObject.SetActive(false);
@@ -21,6 +29,9 @@ public class PlantListView : MonoBehaviour
             //Debug.LogError("plant id: " + plant.Key);
             var item = Utility.InstantiateObject<PlantListItemView>(_prefabPlantItem, _content.transform);
             item.SetPlantData(plant.Key, plant.Value.PlantName, "Plant Image", plant.Value.LightValue, plant.Value.TemperatureValue, plant.Value.MoistureValue);
+            if (!DctPlantItems.ContainsKey(plant.Key))
+                DctPlantItems.Add(plant.Key, item);
+            else Debug.LogError("trung id");
             item.gameObject.SetActive(true);
         }
         _uiViewManager.OnClickShowViewListPlant();
@@ -41,8 +52,7 @@ public class PlantListView : MonoBehaviour
     {
         //gui request tao cay moi va lay data ve, sau do generate data controller
         var newName = Utility.RemoveSpacesFromHeadTail(_uiViewManager.NewPlantName);
-        StartCoroutine(OnClick(_uiViewManager.NewPlantName));
-        Debug.LogError("childcount: " + _content.transform.childCount);
+        StartCoroutine(OnSpawnItem(_uiViewManager.NewPlantName));
         for (var i = 1; i < _content.transform.childCount; i++)
         {
             Destroy(_content.transform.GetChild(i).gameObject);
@@ -51,11 +61,27 @@ public class PlantListView : MonoBehaviour
         _uiViewManager.OnClickShowViewListPlant();
         _uiViewManager.NewPlantName = "";
     }
-    public IEnumerator OnClick(string name)
+    public IEnumerator OnSpawnItem(string name)
     {
         _uiViewManager.OnShowWaitingScene(true);
         yield return ResourceManager.Instance.RequestAddNewPlant(name);
-        yield return new WaitForSeconds(6);
+        if (!ResourceManager.Instance.CanAdd)
+        {
+            _uiViewManager.OnSetNotiPanel(true, "Cannot Add New Plant.");
+            yield return new WaitForSeconds(2);
+            _uiViewManager.OnSetNotiPanel(false, "");
+        }
+        else
+        {
+            _uiViewManager.OnSetNotiPanel(true, "New Plant Added.");
+            yield return new WaitForSeconds(1);
+            _uiViewManager.OnSetNotiPanel(false, "");
+        }
+        foreach (var item in PlantManager.Instance.DctPlantData)
+        {
+            yield return ResourceManager.Instance.RequestGetLatestData(item.Key);
+        }
         Init();
+        
     }
 }

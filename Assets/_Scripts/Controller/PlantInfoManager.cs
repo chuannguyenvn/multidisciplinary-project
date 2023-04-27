@@ -37,21 +37,26 @@ public class PlantInfoManager : MonoBehaviour
     }
     public void OnClickWaterNow()
     {
-        Debug.LogError("click water " + PlantManager.Instance.CurrentPlantItem.PlantID);
         StartCoroutine(OnWaterNow());
     }
     private IEnumerator OnWaterNow()
     {
+        _uiViewManager.OnShowWaitingScene(true);
         yield return ResourceManager.Instance.RequestWaterNow(PlantManager.Instance.CurrentPlantItem.PlantID);
         if (!ResourceManager.Instance.CanWater)
         {
             _uiViewManager.OnSetNotiPanel(true, "Cannot Water Now");
             yield return new WaitForSeconds(2);
+            _uiViewManager.OnShowWaitingScene(false);
             _uiViewManager.OnSetNotiPanel(false, "");
         }
         else
-        {
 
+        {
+            _uiViewManager.OnShowWaitingScene(false);
+            _uiViewManager.OnSetNotiPanel(true, "Watered");
+            yield return new WaitForSeconds(1);
+            _uiViewManager.OnSetNotiPanel(false, "");
         }
     }
     public void OnClickEdit()

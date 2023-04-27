@@ -9,6 +9,8 @@ public class UIViewManager : MonoBehaviour
     private GameObject _topMenu = null;
     [SerializeField]
     private TMP_InputField _inputName = null;
+    [Space]
+    [Header("Loading related")]
     [SerializeField]
     private GameObject _waitingScene = null;
     [SerializeField]
@@ -49,6 +51,8 @@ public class UIViewManager : MonoBehaviour
     }
     private IEnumerator Start()
     {
+        OnShowWaitingScene(true);
+        _notiPanel.SetActive(false);
         yield return ResourceManager.Instance.RequestGetAllDataPlants();
         //yield return ResourceManager.Instance.RequestGetLatestData();
         foreach (var item in PlantManager.Instance.DctPlantData)
@@ -76,6 +80,7 @@ public class UIViewManager : MonoBehaviour
                     break;
             }
         }
+        OnShowWaitingScene(false);
     }
     private void Initialize()
     {

@@ -5058,6 +5058,7 @@ MonoBehaviour:
   _panelRemove: {fileID: 470418825}
   _imgPlant: {fileID: 1271237424}
   _uiViewManager: {fileID: 1296854211}
+  _plantListView: {fileID: 7948426794463858339}
 --- !u!1 &868521596
 GameObject:
   m_ObjectHideFlags: 0

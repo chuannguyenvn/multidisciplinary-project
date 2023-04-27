@@ -28,6 +28,8 @@ public class PlantEditManager : MonoBehaviour
     [Space]
     [SerializeField]
     private UIViewManager _uiViewManager = null;
+    [SerializeField]
+    private PlantListView _plantListView = null;
     
 
     private Texture2D _texture = null;
@@ -58,7 +60,6 @@ public class PlantEditManager : MonoBehaviour
         yield return ResourceManager.Instance.RequestChangeWaterRules(curID, curRepeat, curMetric, _name.text);
         if (!ResourceManager.Instance.CanChangeRules)
         {
-            //debug cannot change name
             _uiViewManager.OnSetNotiPanel(true, "Cannot change name");
             yield return new WaitForSeconds(2);
             _uiViewManager.OnShowWaitingScene(false);
@@ -67,6 +68,10 @@ public class PlantEditManager : MonoBehaviour
         else
         {
             _uiViewManager.OnShowWaitingScene(false);
+            _uiViewManager.OnSetNotiPanel(true, "Name changed.");
+            yield return new WaitForSeconds(1);
+            _uiViewManager.OnSetNotiPanel(false, "");
+            _plantListView.DctPlantItems[curID].OnSetName(_name.text);
         }
     }
     public void OnClickSaveRecog()
@@ -108,6 +113,7 @@ public class PlantEditManager : MonoBehaviour
     {
         int curID = PlantManager.Instance.CurrentPlantItem.PlantID;
         Debug.LogError("cur Id: " + curID);
+        _uiViewManager.OnShowWaitingScene(true);
         if (type == Define.RulesType.Repeat)
         {
             var curMetric = PlantManager.Instance.DctPlantData[curID].WateringRuleMetrics;
@@ -120,10 +126,22 @@ public class PlantEditManager : MonoBehaviour
             yield return ResourceManager.Instance.RequestChangeWaterRules(curID, curRepeat, _newRules.text,
             PlantManager.Instance.DctPlantData[curID].PlantName);
         }
-
-        Debug.LogError("check CanCHangeRules " + ResourceManager.Instance.CanChangeRules);
-        if (ResourceManager.Instance.CanChangeRules)
+        if (!ResourceManager.Instance.CanChangeRules)
+        {
+            _uiViewManager.OnSetNotiPanel(true, "Cannot change rules.");
+            yield return new WaitForSeconds(2);
+            _uiViewManager.OnShowWaitingScene(false);
+            _uiViewManager.OnSetNotiPanel(false, "");
             _panelChangeRules.SetActive(false);
+        }
+        else
+        {
+            _uiViewManager.OnShowWaitingScene(false);
+            _panelChangeRules.SetActive(false);
+            _uiViewManager.OnSetNotiPanel(true, "Rules changed.");
+            yield return new WaitForSeconds(1);
+            _uiViewManager.OnSetNotiPanel(false, "");
+        }
     }
 
     public void OnClickRemoveBtn()
@@ -133,24 +151,28 @@ public class PlantEditManager : MonoBehaviour
 
     public void OnClickConfirmRemoveBtn()
     {
-        //gui request len server
-        _uiViewManager.OnShowWaitingScene(true);
         StartCoroutine(OnClickSendRequestRemovePlant(PlantManager.Instance.CurrentPlantItem.PlantID));
     }
 
     private IEnumerator OnClickSendRequestRemovePlant(int id)
     {
+        _uiViewManager.OnShowWaitingScene(true);
         yield return ResourceManager.Instance.RequestDeletePlant(id);
         if (!ResourceManager.Instance.CanRemove)
         {
-            Debug.LogError("can not remove " + id);
+            _uiViewManager.OnSetNotiPanel(true, "Cannot remove plant.");
             yield return new WaitForSeconds(2);
             _uiViewManager.OnShowWaitingScene(false);
             _panelRemove.SetActive(false);
+            _uiViewManager.OnSetNotiPanel(false, "");
         }
         else
         {
+            _uiViewManager.OnShowWaitingScene(false);
             _panelRemove.SetActive(false);
+            _uiViewManager.OnSetNotiPanel(true, "Plant removed.");
+            yield return new WaitForSeconds(1);
+            _uiViewManager.OnSetNotiPanel(false, "");
         }
     }
 

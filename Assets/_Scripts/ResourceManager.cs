@@ -17,6 +17,8 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
 
     public string bearerKey = "";
     [HideInInspector]
+    public bool CanAdd = false;
+    [HideInInspector]
     public bool CanLogin = false;
     [HideInInspector]
     public bool CanRemove = false;
@@ -36,6 +38,7 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
             {
                 if (success)
                 {
+                    PlantManager.Instance.DctPlantData.Clear();
                     foreach (var plantData in response.PlantInformations)
                     {
                         Debug.LogError(string.Format("Id: {0}, name: {1}, repeat {2}, metric {3}", 
@@ -116,10 +119,15 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
             {
                 if (success)
                 {
+                    CanAdd = true;
                     Debug.Log("Added a new plant.");
                     StartCoroutine(RequestGetAllDataPlants());
                 }
-                else Debug.Log("Adding plant failed.");
+                else
+                {
+                    Debug.Log("Adding plant failed.");
+                    CanAdd = false;
+                }
             });
     }
     public IEnumerator RequestDeletePlant(int id)

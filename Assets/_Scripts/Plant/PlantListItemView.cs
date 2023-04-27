@@ -46,6 +46,10 @@ public class PlantListItemView : MonoBehaviour
         _nameText.text = name;
         _img.sprite = ResourceManager.Instance.GetImportImage(imageID);
     }
+    public void OnSetName(string name)
+    {
+        _nameText.text = name;
+    }
     
     public void OnClickShowPlantInfo()
     {
