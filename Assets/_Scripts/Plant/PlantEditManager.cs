@@ -210,8 +210,9 @@ public class PlantEditManager : MonoBehaviour
     public void SaveImage()
     {
         Debug.LogError("save image");
-
-        NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(_texture, "GalleryTest", "quangbao.png", (success, path) => Debug.Log("Media save result: " + success + " " + path));
+        //_uiViewManager.ConvertSpriteToTexture(_imgPlant.sprite)
+        NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(_imgPlant.sprite.texture, 
+            "GalleryTest", "quangbao.png", (success, path) => Debug.Log("Media save result: " + success + " " + path));
 
         Debug.LogError("Permission result: " + permission);
     }
