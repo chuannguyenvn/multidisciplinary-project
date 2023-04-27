@@ -18,52 +18,22 @@ MonoBehaviour:
     m_Storage: []
   m_Images:
   - m_SerializedGuid:
-      m_GuidLow: 5235519456513750471
-      m_GuidHigh: 14704944408512219543
+      m_GuidLow: 5203805473428775287
+      m_GuidHigh: 7565942164076895898
     m_SerializedTextureGuid:
-      m_GuidLow: 14759604639561665339
-      m_GuidHigh: 3634677117885981130
-    m_Size: {x: 0.1, y: 0.1}
+      m_GuidLow: 16727548179462648908
+      m_GuidHigh: 1444017115193907850
+    m_Size: {x: 0.100100406, y: 0.1}
     m_SpecifySize: 1
-    m_Name: 1
+    m_Name: Tracking Image
     m_Texture: {fileID: 0}
   - m_SerializedGuid:
-      m_GuidLow: 4846263517635565586
-      m_GuidHigh: 338159792906717849
+      m_GuidLow: 4638791481137368852
+      m_GuidHigh: 17462069338183335818
     m_SerializedTextureGuid:
-      m_GuidLow: 16912269891867621437
-      m_GuidHigh: 18003224785458664137
+      m_GuidLow: 17669021049465549617
+      m_GuidHigh: 11746733619128113307
     m_Size: {x: 0.1, y: 0.1}
     m_SpecifySize: 1
-    m_Name: 4
-    m_Texture: {fileID: 0}
-  - m_SerializedGuid:
-      m_GuidLow: 4969915936116145891
-      m_GuidHigh: 14663891425832264594
-    m_SerializedTextureGuid:
-      m_GuidLow: 1280176326698723850
-      m_GuidHigh: 4156736112322240105
-    m_Size: {x: 0.1, y: 0.1}
-    m_SpecifySize: 1
-    m_Name: 6
-    m_Texture: {fileID: 0}
-  - m_SerializedGuid:
-      m_GuidLow: 5590454409858171792
-      m_GuidHigh: 14101975218998948999
-    m_SerializedTextureGuid:
-      m_GuidLow: 7166515028056605779
-      m_GuidHigh: 7324705839174001016
-    m_Size: {x: 0.1, y: 0.1}
-    m_SpecifySize: 1
-    m_Name: 7
-    m_Texture: {fileID: 0}
-  - m_SerializedGuid:
-      m_GuidLow: 5337401058923412875
-      m_GuidHigh: 15189588538796063901
-    m_SerializedTextureGuid:
-      m_GuidLow: 5729954260852419467
-      m_GuidHigh: 11021559754655369144
-    m_Size: {x: 0.1, y: 0.1}
-    m_SpecifySize: 1
-    m_Name: 8
+    m_Name: owl
     m_Texture: {fileID: 0}
