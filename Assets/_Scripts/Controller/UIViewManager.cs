@@ -54,6 +54,7 @@ public class UIViewManager : MonoBehaviour
         OnShowWaitingScene(true);
         _notiPanel.SetActive(false);
         yield return ResourceManager.Instance.RequestGetAllDataPlants();
+        //yield return ResourceManager.Instance.RequestGetLatestData();
         foreach (var item in PlantManager.Instance.DctPlantData)
         {
             yield return ResourceManager.Instance.RequestGetLatestData(item.Key);
@@ -328,39 +329,6 @@ public class UIViewManager : MonoBehaviour
             }, NativeGallery.MediaType.Image | NativeGallery.MediaType.Video, "Select an image or video");
 
             Debug.Log("Permission result: " + permission);
-        }
-    }
-    public void GenerateImage()
-    {
-        foreach (var item in PlantManager.Instance.DctPlantData)
-        {
-            RecognizerParser.Save(item.Value.RecognizerCode, item.Key.ToString());
-        }
-    }
-
-    public Texture2D ConvertSpriteToTexture(Sprite sprite)
-    {
-        try
-        {
-            if (sprite.rect.width != sprite.texture.width)
-            {
-                Texture2D newText = new Texture2D((int)sprite.rect.width, (int)sprite.rect.height);
-                Color[] colors = newText.GetPixels();
-                Color[] newColors = sprite.texture.GetPixels((int)Mathf.CeilToInt(sprite.textureRect.x),
-                                                             (int)Mathf.CeilToInt(sprite.textureRect.y),
-                                                             (int)Mathf.CeilToInt(sprite.textureRect.width),
-                                                             (int)Mathf.CeilToInt(sprite.textureRect.height));
-                Debug.Log(colors.Length + "_" + newColors.Length);
-                newText.SetPixels(newColors);
-                newText.Apply();
-                return newText;
-            }
-            else
-                return sprite.texture;
-        }
-        catch
-        {
-            return sprite.texture;
         }
     }
     #endregion
