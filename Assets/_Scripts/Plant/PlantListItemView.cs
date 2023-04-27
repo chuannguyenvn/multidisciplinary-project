@@ -8,8 +8,7 @@ using UnityEngine.UI;
 
 public class PlantListItemView : MonoBehaviour
 {
-    [SerializeField]
-    private TextMeshProUGUI _nameText = null;
+    public TextMeshProUGUI _nameText = null;
     [SerializeField]
     private Image _img = null;
     [Space]
