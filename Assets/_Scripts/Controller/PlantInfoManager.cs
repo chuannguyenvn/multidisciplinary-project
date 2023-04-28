@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,40 +6,52 @@ using TMPro;
 
 public class PlantInfoManager : MonoBehaviour
 {
-    [SerializeField]
-    private UIViewManager _uiViewManager = null;
-    [SerializeField]
-    private TextMeshProUGUI _name = null;
-    [SerializeField]
-    private TextMeshProUGUI _light = null;
-    [SerializeField]
-    private TextMeshProUGUI _humid = null;
-    [SerializeField]
-    private TextMeshProUGUI _temp = null;
+    [SerializeField] private UIViewManager _uiViewManager = null;
+    [SerializeField] private TextMeshProUGUI _name = null;
+    [SerializeField] private TextMeshProUGUI _light = null;
+    [SerializeField] private TextMeshProUGUI _humid = null;
+    [SerializeField] private TextMeshProUGUI _temp = null;
+
+    [SerializeField] private PlantDataHistory _plantDataHistory;
 
     public void OnClickShowHistoryTemp()
     {
-        _uiViewManager.OnClickShowViewHistory();
-        PlantHistory.Instance.OnChangeHistoryType(Define.HistoryType.Temperature);
+        //_uiViewManager.OnClickShowViewHistory();
+        //PlantHistory.Instance.OnChangeHistoryType(Define.HistoryType.Temperature);
+        _plantDataHistory.Activate(PlantManager.Instance.CurrentPlantItem.PlantID,
+            PlantManager.Instance.CurrentPlantItem._nameText.text,
+            PlantDataHistory.Type.Light);
     }
+
     public void OnClickShowHistoryLight()
     {
-        _uiViewManager.OnClickShowViewHistory();
-        PlantHistory.Instance.OnChangeHistoryType(Define.HistoryType.Light);
+        //_uiViewManager.OnClickShowViewHistory();
+        //PlantHistory.Instance.OnChangeHistoryType(Define.HistoryType.Light);
+        _plantDataHistory.Activate(PlantManager.Instance.CurrentPlantItem.PlantID,
+            PlantManager.Instance.CurrentPlantItem._nameText.text,
+            PlantDataHistory.Type.Temperature);
     }
+
     public void OnClickShowHistoryHumid()
     {
-        _uiViewManager.OnClickShowViewHistory();
-        PlantHistory.Instance.OnChangeHistoryType(Define.HistoryType.Humidity);
+        //_uiViewManager.OnClickShowViewHistory();
+        //PlantHistory.Instance.OnChangeHistoryType(Define.HistoryType.Humidity);
+        _plantDataHistory.Activate(PlantManager.Instance.CurrentPlantItem.PlantID,
+            PlantManager.Instance.CurrentPlantItem._nameText.text,
+            PlantDataHistory.Type.Moisture);
     }
+
     public void OnClickBackBtn()
     {
         _uiViewManager.OnClickBackToListPlant();
+        _plantDataHistory.Deactivate();
     }
+
     public void OnClickWaterNow()
     {
         StartCoroutine(OnWaterNow());
     }
+
     private IEnumerator OnWaterNow()
     {
         _uiViewManager.OnShowWaitingScene(true);
@@ -59,10 +72,12 @@ public class PlantInfoManager : MonoBehaviour
             _uiViewManager.OnSetNotiPanel(false, "");
         }
     }
+
     public void OnClickEdit()
     {
         _uiViewManager.OnClickShowViewEdit();
     }
+
     public void OnSetPlantData(string name, string light, string humid, string temp)
     {
         _name.text = name;
