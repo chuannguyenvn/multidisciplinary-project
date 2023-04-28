@@ -25,7 +25,7 @@ MonoBehaviour:
       m_GuidHigh: 1444017115193907850
     m_Size: {x: 0.100100406, y: 0.1}
     m_SpecifySize: 1
-    m_Name: Tracking Image
+    m_Name: 1
     m_Texture: {fileID: 0}
   - m_SerializedGuid:
       m_GuidLow: 4638791481137368852
@@ -35,15 +35,15 @@ MonoBehaviour:
       m_GuidHigh: 11746733619128113307
     m_Size: {x: 0.1, y: 0.1}
     m_SpecifySize: 1
-    m_Name: owl
+    m_Name: 2
     m_Texture: {fileID: 0}
   - m_SerializedGuid:
-      m_GuidLow: 5633065710441144748
-      m_GuidHigh: 9370165611967220900
+      m_GuidLow: 5346064301617909738
+      m_GuidHigh: 17685570549715429053
     m_SerializedTextureGuid:
-      m_GuidLow: 14759604639561665339
-      m_GuidHigh: 3634677117885981130
+      m_GuidLow: 6936752295456142259
+      m_GuidHigh: 12675800667376364394
     m_Size: {x: 0.1, y: 0.1}
     m_SpecifySize: 1
-    m_Name: 1
+    m_Name: Recognizer 1
     m_Texture: {fileID: 0}
