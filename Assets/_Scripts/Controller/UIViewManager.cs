@@ -21,8 +21,8 @@ public class UIViewManager : MonoBehaviour
     [Header("View")]
     [SerializeField]
     private PlantListView _plantListView = null;
-    [SerializeField]
-    private PlantHistory _plantHistory = null;
+    //[SerializeField]
+    //private PlantHistory _plantHistory = null;
     [SerializeField]
     private PlantEditManager _plantEditManager = null;
     [SerializeField]
@@ -60,7 +60,7 @@ public class UIViewManager : MonoBehaviour
             yield return ResourceManager.Instance.RequestGetLatestData(item.Key);
         }
         _plantEditManager.Init();
-        _plantHistory.Init();
+        //_plantHistory.Init();
         _plantListView.Init();
         OnClickShowViewListPlant();
         var param = SceneManager.Instance.CurrentParam;
@@ -93,6 +93,13 @@ public class UIViewManager : MonoBehaviour
             else Debug.LogError("trung");
         }
         //Debug.LogError("count of dct: " + DictUIView.Count);
+    }
+    public void OnHideAllViews()
+    {
+        foreach (var item in DictUIView)
+        {
+            item.Value.gameObject.SetActive(false);
+        }
     }
     public void OnShowWaitingScene(bool set)
     {

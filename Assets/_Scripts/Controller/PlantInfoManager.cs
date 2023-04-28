@@ -16,29 +16,26 @@ public class PlantInfoManager : MonoBehaviour
 
     public void OnClickShowHistoryTemp()
     {
-        //_uiViewManager.OnClickShowViewHistory();
-        //PlantHistory.Instance.OnChangeHistoryType(Define.HistoryType.Temperature);
         _plantDataHistory.Activate(PlantManager.Instance.CurrentPlantItem.PlantID,
             PlantManager.Instance.CurrentPlantItem._nameText.text,
-            PlantDataHistory.Type.Light);
+            PlantDataHistory.Type.Temperature);
+        _uiViewManager.OnHideAllViews();
     }
 
     public void OnClickShowHistoryLight()
     {
-        //_uiViewManager.OnClickShowViewHistory();
-        //PlantHistory.Instance.OnChangeHistoryType(Define.HistoryType.Light);
         _plantDataHistory.Activate(PlantManager.Instance.CurrentPlantItem.PlantID,
             PlantManager.Instance.CurrentPlantItem._nameText.text,
-            PlantDataHistory.Type.Temperature);
+            PlantDataHistory.Type.Light);
+        _uiViewManager.OnHideAllViews();
     }
 
     public void OnClickShowHistoryHumid()
     {
-        //_uiViewManager.OnClickShowViewHistory();
-        //PlantHistory.Instance.OnChangeHistoryType(Define.HistoryType.Humidity);
         _plantDataHistory.Activate(PlantManager.Instance.CurrentPlantItem.PlantID,
             PlantManager.Instance.CurrentPlantItem._nameText.text,
             PlantDataHistory.Type.Moisture);
+        _uiViewManager.OnHideAllViews();
     }
 
     public void OnClickBackBtn()
