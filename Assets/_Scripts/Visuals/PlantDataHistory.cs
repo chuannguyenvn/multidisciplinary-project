@@ -277,8 +277,8 @@ public class PlantDataHistory : MonoBehaviour
         var normalizedTimestamps = NormalizeData(timestamps, startTimestamp, endTimestamp);
 
         var dataValues = dataPoints.Select(point => point.value).ToList();
-        var minDataValue = dataValues.Min();
-        var maxDataValue = dataValues.Max();
+        var minDataValue = 0;
+        var maxDataValue = 100;
         var normalizedDataValue = NormalizeData(dataValues, minDataValue, maxDataValue);
 
         for (var i = 0; i < dataPoints.Count; i++)
