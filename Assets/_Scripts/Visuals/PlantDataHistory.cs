@@ -30,12 +30,15 @@ public class PlantDataHistory : MonoBehaviour
     [SerializeField] private Sprite _lightSprite;
     [SerializeField] private Sprite _temperatureSprite;
     [SerializeField] private Sprite _moistureSprite;
-
+    [Space]
     [SerializeField] private Polyline _dataLine;
     [SerializeField] private Line _waterLine;
     [SerializeField] private RectTransform _graphPanel;
     [SerializeField] private List<Label> _xLabels;
     [SerializeField] private List<Label> _yLabels;
+    [Space]
+    [SerializeField]
+    private UIViewManager _uiViewManager = null;
 
     private int _currentPlantId;
     private string _currentPlantName;
@@ -314,5 +317,11 @@ public class PlantDataHistory : MonoBehaviour
     private List<float> NormalizeData(IEnumerable<DateTime> rawData, DateTime min, DateTime max)
     {
         return rawData.Select(data => (float)((data - min) / (max - min))).ToList();
+    }
+
+    public void OnClickBackBtn()
+    {
+        _uiViewManager.OnClickShowViewPlantInfor();
+        Deactivate();
     }
 }
