@@ -8,9 +8,8 @@ public class PlantListView : MonoBehaviour
 {
     [SerializeField] private PlantListItemView _prefabPlantItem = null;
     [SerializeField] private GameObject _content = null;
-
-    [SerializeField]
-    private UIViewManager _uiViewManager = null;
+    [SerializeField] private HorizontalLayoutGroup _horizontalLayoutGroup = null;
+    [SerializeField] private UIViewManager _uiViewManager = null;
 
     private Dictionary<int, PlantListItemView> _dctPlantItems = new Dictionary<int, PlantListItemView>();
 
@@ -28,26 +27,37 @@ public class PlantListView : MonoBehaviour
         {
             //Debug.LogError("plant id: " + plant.Key);
             var item = Utility.InstantiateObject<PlantListItemView>(_prefabPlantItem, _content.transform);
-            item.SetPlantData(plant.Key, plant.Value.PlantName, "Plant Image", plant.Value.LightValue, plant.Value.TemperatureValue, plant.Value.MoistureValue);
+            item.SetPlantData(plant.Key,
+                plant.Value.PlantName,
+                "Plant Image",
+                plant.Value.LightValue,
+                plant.Value.TemperatureValue,
+                plant.Value.MoistureValue);
             if (!DctPlantItems.ContainsKey(plant.Key))
                 DctPlantItems.Add(plant.Key, item);
             else Debug.LogError("trung id");
             item.gameObject.SetActive(true);
         }
+
         _uiViewManager.OnClickShowViewListPlant();
         _uiViewManager.NewPlantName = "";
         _uiViewManager.OnShowWaitingScene(false);
+        _horizontalLayoutGroup.padding.left =
+            (int)(1280f / 2f - _prefabPlantItem.GetComponent<RectTransform>().rect.width / 2);
     }
+
     public void OnClickButtonAddNewPlant()
     {
         _uiViewManager.GetUIViewWithViewName(Define.ViewName.NewPlant.ToString()).gameObject.SetActive(true);
         _uiViewManager.OnShowWaitingScene(false);
     }
+
     public void OnClickCancelAddPlant()
     {
         _uiViewManager.OnClickShowViewListPlant();
         _uiViewManager.NewPlantName = "";
     }
+
     public void OnClickSpawnPlantItems()
     {
         //gui request tao cay moi va lay data ve, sau do generate data controller
@@ -61,6 +71,7 @@ public class PlantListView : MonoBehaviour
         _uiViewManager.OnClickShowViewListPlant();
         _uiViewManager.NewPlantName = "";
     }
+
     public IEnumerator OnSpawnItem(string name)
     {
         _uiViewManager.OnShowWaitingScene(true);
@@ -77,11 +88,12 @@ public class PlantListView : MonoBehaviour
             yield return new WaitForSeconds(1);
             _uiViewManager.OnSetNotiPanel(false, "");
         }
+
         foreach (var item in PlantManager.Instance.DctPlantData)
         {
             yield return ResourceManager.Instance.RequestGetLatestData(item.Key);
         }
+
         Init();
-        
     }
 }
