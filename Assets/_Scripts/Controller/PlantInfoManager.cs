@@ -78,8 +78,8 @@ public class PlantInfoManager : MonoBehaviour
     public void OnSetPlantData(string name, string light, string humid, string temp)
     {
         _name.text = name;
-        _temp.text = temp;
-        _light.text = light;
-        _humid.text = humid;
+        _temp.text = temp + "<size=60px>°C";
+        _light.text = light + "<size=60px>lx";
+        _humid.text = humid + "<size=60px>%";
     }
 }
