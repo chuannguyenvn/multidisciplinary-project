@@ -10,6 +10,7 @@ public class SceneManager : PersistentSingleton<SceneManager>
     public class Param
     {
         public Define.ViewName viewName;
+        public int Id;
     }
     private string _currentScene;
     private Param _currentParam;

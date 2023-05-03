@@ -23,6 +23,33 @@ public class PlantListView : MonoBehaviour
     {
         _prefabPlantItem.gameObject.SetActive(false);
         Debug.LogError("check dct count: " + PlantManager.Instance.DctPlantData.Count);
+        //int id = 0;
+        //if (SceneManager.Instance.CurrentParam != null)
+        //    if (SceneManager.Instance.CurrentParam.Id != 0)
+        //        id = SceneManager.Instance.CurrentParam.Id;
+        //foreach (var plant in PlantManager.Instance.DctPlantData)
+        //{
+        //    //Debug.LogError("plant id: " + plant.Key);
+        //    var item = Utility.InstantiateObject<PlantListItemView>(_prefabPlantItem, _content.transform);
+        //    item.SetPlantData(plant.Key, plant.Value.PlantName, "Plant Image", plant.Value.LightValue, plant.Value.TemperatureValue, plant.Value.MoistureValue);
+        //    if (!DctPlantItems.ContainsKey(plant.Key))
+        //        DctPlantItems.Add(plant.Key, item);
+        //    else Debug.LogError("trung id");
+        //    if (id != 0 && plant.Key == id)
+        //        PlantManager.Instance.CurrentPlantItem = item;
+        //    item.gameObject.SetActive(true);
+        //}
+        StartCoroutine(OnInit());
+        _uiViewManager.OnClickShowViewListPlant();
+        _uiViewManager.NewPlantName = "";
+        _uiViewManager.OnShowWaitingScene(false);
+    }
+    private IEnumerator OnInit()
+    {
+        int id = 0;
+        if (SceneManager.Instance.CurrentParam != null)
+            if (SceneManager.Instance.CurrentParam.Id != 0)
+                id = SceneManager.Instance.CurrentParam.Id;
         foreach (var plant in PlantManager.Instance.DctPlantData)
         {
             //Debug.LogError("plant id: " + plant.Key);
@@ -36,14 +63,14 @@ public class PlantListView : MonoBehaviour
             if (!DctPlantItems.ContainsKey(plant.Key))
                 DctPlantItems.Add(plant.Key, item);
             else Debug.LogError("trung id");
+            if (id != 0 && plant.Key == id)
+                PlantManager.Instance.CurrentPlantItem = item;
             item.gameObject.SetActive(true);
         }
-
-        _uiViewManager.OnClickShowViewListPlant();
-        _uiViewManager.NewPlantName = "";
-        _uiViewManager.OnShowWaitingScene(false);
+        
         _horizontalLayoutGroup.padding.left =
             (int)(1280f / 2f - _prefabPlantItem.GetComponent<RectTransform>().rect.width / 2);
+        yield return new WaitForSeconds(2);
     }
 
     public void OnClickButtonAddNewPlant()

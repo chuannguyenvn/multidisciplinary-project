@@ -60,7 +60,6 @@ public class UIViewManager : MonoBehaviour
             yield return ResourceManager.Instance.RequestGetLatestData(item.Key);
         }
         _plantEditManager.Init();
-        //_plantHistory.Init();
         _plantListView.Init();
         OnClickShowViewListPlant();
         var param = SceneManager.Instance.CurrentParam;
@@ -69,6 +68,14 @@ public class UIViewManager : MonoBehaviour
             switch (param.viewName)
             {
                 case Define.ViewName.PlantInfor:
+                    //foreach (var item in _plantListView.DctPlantItems)
+                    //{
+                    //    if (item.Key == param.Id)
+                    //    {
+                    //        PlantManager.Instance.CurrentPlantItem = item.Value;
+                    //        break;
+                    //    }
+                    //}
                     OnShowPlantInfoPanel();
                     break;
 
