@@ -58,4 +58,9 @@ public class Define : MonoBehaviour
         Login = 0,
         Register = 1
     }
+    public enum PlantNameReferenceLib
+    {
+        plant1 = 0,
+        plant2 = 1
+    }
 }

@@ -41,7 +41,7 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
                     PlantManager.Instance.DctPlantData.Clear();
                     foreach (var plantData in response.PlantInformations)
                     {
-                        Debug.LogError(string.Format("recog code: {0}", plantData.RecognizerCode));
+                        //Debug.LogError(string.Format("recog code: {0}", plantData.RecognizerCode));
                         if (!PlantManager.Instance.DctPlantData.ContainsKey(plantData.Id))
                         {
                             PlantDataController dataController = new PlantDataController();
