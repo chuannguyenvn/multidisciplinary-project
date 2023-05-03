@@ -17,7 +17,7 @@ public class ARController : MonoBehaviour
     private int _id;
     public void OnClickShowPanelInfo()
     {
-        SceneManager.Instance.ChangeScene(Define.SceneName.Main.ToString(), new SceneManager.Param { viewName = Define.ViewName.PlantInfor });
+        SceneManager.Instance.ChangeScene(Define.SceneName.Main.ToString(), new SceneManager.Param { viewName = Define.ViewName.PlantInfor, Id = _id });
     }
     public void OnClickWaterNowBtn()
     {
