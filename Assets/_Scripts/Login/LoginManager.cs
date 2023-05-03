@@ -28,6 +28,11 @@ public class LoginManager : Singleton<LoginManager>
     [SerializeField]
     private GameObject _panelLoading = null;
 
+    [SerializeField] 
+    private GameObject _appTitle = null;
+    [SerializeField] 
+    private GameObject _orText = null;
+
     protected override void Awake()
     {
         base.Awake();
@@ -40,6 +45,8 @@ public class LoginManager : Singleton<LoginManager>
         _panelLoginFail.SetActive(false);
         _cancelButton.gameObject.SetActive(false);
         _panelLoading.SetActive(false);
+        _appTitle.SetActive(true);
+        _orText.SetActive(true);
     }
     public void OnClickShowPanelLogin()
     {
@@ -50,6 +57,8 @@ public class LoginManager : Singleton<LoginManager>
         _loginButton.gameObject.SetActive(true);
         _registerButton.gameObject.SetActive(false);
         _cancelButton.gameObject.SetActive(true);
+        _appTitle.SetActive(false);
+        _orText.SetActive(false);
     }
     public void OnClickShowPanelRegister()
     {
@@ -60,6 +69,8 @@ public class LoginManager : Singleton<LoginManager>
         _loginButton.gameObject.SetActive(false);
         _registerButton.gameObject.SetActive(true);
         _cancelButton.gameObject.SetActive(true);
+        _appTitle.SetActive(false);
+        _orText.SetActive(false);
     }
     public void OnClickLoginButton()
     {
@@ -104,5 +115,7 @@ public class LoginManager : Singleton<LoginManager>
         _registerPanelButton.gameObject.SetActive(true);
         _panelLoginFail.SetActive(false);
         _cancelButton.gameObject.SetActive(false);
+        _appTitle.SetActive(true);
+        _orText.SetActive(true);
     }
 }
