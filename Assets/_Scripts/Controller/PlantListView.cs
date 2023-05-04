@@ -74,10 +74,15 @@ public class PlantListView : MonoBehaviour
         //gui request tao cay moi va lay data ve, sau do generate data controller
         var newName = Utility.RemoveSpacesFromHeadTail(_uiViewManager.NewPlantName);
         StartCoroutine(OnSpawnItem(_uiViewManager.NewPlantName));
-        for (var i = 1; i < _content.transform.childCount; i++)
+        //for (var i = 1; i < _content.transform.childCount; i++)
+        //{
+        //    Destroy(_content.transform.GetChild(i).gameObject);
+        //}
+        foreach (var item in DctPlantItems)
         {
-            Destroy(_content.transform.GetChild(i).gameObject);
+            Destroy(item.Value.gameObject);
         }
+        DctPlantItems.Clear();
 
         _uiViewManager.OnClickShowViewListPlant();
         _uiViewManager.NewPlantName = "";
@@ -87,6 +92,7 @@ public class PlantListView : MonoBehaviour
     {
         _uiViewManager.OnShowWaitingScene(true);
         yield return ResourceManager.Instance.RequestAddNewPlant(name);
+        //xong cai nay se co dctPlantData moi
         if (!ResourceManager.Instance.CanAdd)
         {
             _uiViewManager.OnSetNotiPanel(true, "Cannot Add New Plant.");

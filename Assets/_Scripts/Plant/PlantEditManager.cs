@@ -179,8 +179,9 @@ public class PlantEditManager : MonoBehaviour
             _uiViewManager.OnShowWaitingScene(false);
             _panelRemove.SetActive(false);
             _uiViewManager.OnSetNotiPanel(true, "Plant removed.");
-            Destroy(PlantManager.Instance.DctPlantData[id].gameObject);
+            Destroy(_plantListView.DctPlantItems[id].gameObject);
             Debug.LogError("removed: " + PlantManager.Instance.DctPlantData.Remove(id));
+            Debug.LogError("removed: " + _plantListView.DctPlantItems.Remove(id));
             _uiViewManager.OnClickShowViewListPlant();
             yield return new WaitForSeconds(1);
             _uiViewManager.OnSetNotiPanel(false, "");
