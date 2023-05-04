@@ -22,7 +22,8 @@ public class PlantListView : MonoBehaviour
     public void Init()
     {
         _prefabPlantItem.gameObject.SetActive(false);
-        Debug.LogError("check dct count: " + PlantManager.Instance.DctPlantData.Count);
+        //Debug.LogError("check dct data count: " + PlantManager.Instance.DctPlantData.Count);
+        //Debug.LogError("check dct item count: " + DctPlantItems.Count);
         StartCoroutine(OnInit());
         _uiViewManager.OnClickShowViewListPlant();
         _uiViewManager.NewPlantName = "";

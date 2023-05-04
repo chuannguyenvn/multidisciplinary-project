@@ -176,15 +176,17 @@ public class PlantEditManager : MonoBehaviour
         }
         else
         {
-            _uiViewManager.OnShowWaitingScene(false);
-            _panelRemove.SetActive(false);
-            _uiViewManager.OnSetNotiPanel(true, "Plant removed.");
             Destroy(_plantListView.DctPlantItems[id].gameObject);
             Debug.LogError("removed: " + PlantManager.Instance.DctPlantData.Remove(id));
             Debug.LogError("removed: " + _plantListView.DctPlantItems.Remove(id));
-            _uiViewManager.OnClickShowViewListPlant();
+            _panelRemove.SetActive(false);
+            _uiViewManager.OnSetNotiPanel(true, "Plant removed.");
+            Debug.LogError("check 1");
             yield return new WaitForSeconds(1);
+            _uiViewManager.OnClickShowViewListPlant();
+            Debug.LogError("check 2");
             _uiViewManager.OnSetNotiPanel(false, "");
+            _uiViewManager.OnShowWaitingScene(false);
         }
     }
 
