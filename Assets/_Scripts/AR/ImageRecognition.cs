@@ -44,10 +44,9 @@ public class ImageRecognition : MonoBehaviour
     public void OnShowPanel(ARTrackedImagesChangedEventArgs args)
     {
         _panel.SetActive(true);
-        //var str = "";
         //foreach (var item in _arTrackedImageManager.trackables)
         //{
-        //    str += item.referenceImage.name;
+        // item.referenceImage.texture   
         //}
         //_text.text = str;
         //foreach (var item in args.added)
@@ -72,12 +71,6 @@ public class ImageRecognition : MonoBehaviour
                 var temp = PlantManager.Instance.DctPlantData[id].TemperatureValue;
                 _controller.OnSetPlantInfo(id, name, light.ToString(), humid.ToString(), temp.ToString());
             }
-            //else
-            //{
-            //    //trackedImg is lost  
-            //    //_text4.text = "state lost";
-
-            //}
         }
     }
 }

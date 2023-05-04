@@ -30,7 +30,12 @@ public class PlantEditManager : MonoBehaviour
     private UIViewManager _uiViewManager = null;
     [SerializeField]
     private PlantListView _plantListView = null;
-    
+    [Space]
+    [SerializeField]
+    private ARTrackedImageManager _ARManager = null;
+    [SerializeField]
+    private XRReferenceImageLibrary _lib = null;
+
 
     private Texture2D _texture = null;
 
@@ -77,13 +82,14 @@ public class PlantEditManager : MonoBehaviour
     }
     public void OnClickSaveRecog()
     {
-        SaveImage();
+        var myLib = _ARManager.CreateRuntimeLibrary(_lib);
+        var myTexture = myLib[0].texture;
+        SaveImage(myTexture);
     }
     public void OnClickRetakeBtn()
     {
         //access to gallery and select picture
         PickImage();
-        Debug.LogError("run");
     }
 
     public void OnClickChangeRulesRepeatBtn()
@@ -173,6 +179,9 @@ public class PlantEditManager : MonoBehaviour
             _uiViewManager.OnShowWaitingScene(false);
             _panelRemove.SetActive(false);
             _uiViewManager.OnSetNotiPanel(true, "Plant removed.");
+            Destroy(PlantManager.Instance.DctPlantData[id].gameObject);
+            Debug.LogError("removed: " + PlantManager.Instance.DctPlantData.Remove(id));
+            _uiViewManager.OnClickShowViewListPlant();
             yield return new WaitForSeconds(1);
             _uiViewManager.OnSetNotiPanel(false, "");
         }
@@ -209,11 +218,11 @@ public class PlantEditManager : MonoBehaviour
 
         Debug.Log("Permission result: " + permission);
     }
-    public void SaveImage()
+    public void SaveImage(Texture2D texture)
     {
-        Debug.LogError("save image");
+        //Debug.LogError("save image");
         var curID = PlantManager.Instance.CurrentPlantItem.PlantID;
-        NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(_texture, "PlantGallery", curID + ".png", (success, path) => Debug.Log("Media save result: " + success + " " + path));
+        NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(texture, "PlantGallery", curID + ".png", (success, path) => Debug.Log("Media save result: " + success + " " + path));
 
         Debug.LogError("Permission result: " + permission);
     }
